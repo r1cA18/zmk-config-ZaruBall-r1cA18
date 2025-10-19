@@ -112,8 +112,8 @@
             bindings = <
 &kp ESC                &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4                                      &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                 &out OUT_TOG           &bt BT_CLR  &bt BT_CLR_ALL  &none      &none    &none
 &kp Q                  &kp W         &kp E         &kp R         &kp T           &none                                             &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY               &none                  &kp Y       &kp U           &kp I      &kp O    &kp P
-&SandS LEFT_CONTROL A  &kp S         &kp D         &kp F         &kp G           &kp LC(LEFT_ARROW)     &kp LA(LG(LEFT_ARROW))     &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &none      &kp LG(LBKT)           &kp H       &kp J           &kp K      &kp L    &kp SEMI
-&SandS LEFT_GUI Z      &kp X         &kp C         &kp V         &kp B           &kp LC(RIGHT_ARROW)    &kp LA(LG(RIGHT_ARROW))    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &none      &kp LG(RIGHT_BRACKET)  &kp N       &kp M           &kp COMMA  &kp DOT  &kp FSLH
+&SandS LEFT_CONTROL A  &kp S         &kp D         &kp F         &kp G           &kp LC(LEFT_ARROW)     &kp LA(LG(LEFT_ARROW))     &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &none      &kp LG(LBKT)           &kp H       &kp J           &kp K      &kp L    &SandS RIGHT_CONTROL SEMI
+&SandS LEFT_GUI Z      &kp X         &kp C         &kp V         &kp B           &kp LC(RIGHT_ARROW)    &kp LA(LG(RIGHT_ARROW))    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &none      &kp LG(RIGHT_BRACKET)  &kp N       &kp M           &kp COMMA  &kp DOT  &SandS RIGHT_GUI FSLH
 &td0                   &kp C_MUTE                  &kp TAB       &kp LEFT_SHIFT  &SandS LEFT_ALT SPACE  &mo 2                                                                              &lt 3 RET  &kp BSPC                                                               &td1
             >;
         };
