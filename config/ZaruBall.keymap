@@ -122,11 +122,11 @@
             display-name = "Mouse";
             sensor-bindings = <&scroll_down_up>;
             bindings = <
-&to_layer_0 ESC  &to_layer_0 N1  &to_layer_0 N2  &to_layer_0 N3  &to_layer_0 N4  &to_layer_0 N5                     &trans  &trans  &trans  &trans                     &to_layer_0 N6  &to_layer_0 N7  &to_layer_0 N8  &to_layer_0 N9     &to_layer_0 N0   &to_layer_0 MINUS
-&to_layer_0 Q    &to_layer_0 W   &to_layer_0 E   &to_layer_0 R   &to_layer_0 T   &none                              &trans  &trans  &trans  &trans                     &none           &to_layer_0 Y   &to_layer_0 U   &to_layer_0 I      &to_layer_0 O    &to_layer_0 P
-&to_layer_0 A    &to_layer_0 S   &mkp RCLK       &mkp MCLK       &mkp LCLK       &msc SCRL_UP    &msc SCRL_LEFT     &trans  &trans  &trans  &trans    &msc SCRL_LEFT   &msc SCRL_UP    &mkp LCLK       &mkp MCLK       &mkp RCLK          &to_layer_0 L    &to_layer_0 SEMI
-&to_layer_0 Z    &to_layer_0 X   &to_layer_0 C   &mkp MB4        &mkp MB5        &msc SCRL_DOWN  &msc SCRL_RIGHT    &trans  &trans  &trans  &trans    &msc SCRL_RIGHT  &msc SCRL_DOWN  &mkp MB4        &mkp MB5        &to_layer_0 COMMA  &to_layer_0 DOT  &to_layer_0 FSLH
-&trans           &trans                          &trans          &trans          &trans          &trans                                               &trans           &trans                                                                              &trans
+&to_layer_0 ESC  &to_layer_0 N1  &to_layer_0 N2  &to_layer_0 N3  &to_layer_0 N4  &to_layer_0 N5                     &trans  &trans  &trans  &trans                     &to_layer_0 N6  &to_layer_0 N7  &to_layer_0 N8  &to_layer_0 N9  &to_layer_0 N0   &to_layer_0 MINUS
+&to_layer_0 Q    &to_layer_0 W   &to_layer_0 E   &to_layer_0 R   &to_layer_0 T   &none                              &trans  &trans  &trans  &trans                     &none           &to_layer_0 Y   &to_layer_0 U   &to_layer_0 I   &to_layer_0 O    &to_layer_0 P
+&to_layer_0 A    &mkp RCLK       &mkp MCLK       &mkp LCLK       &kp G           &msc SCRL_UP    &msc SCRL_LEFT     &trans  &trans  &trans  &trans    &msc SCRL_LEFT   &msc SCRL_UP    &to_layer_0 H   &mkp LCLK       &mkp MCLK       &mkp RCLK        &to_layer_0 SEMI
+&to_layer_0 Z    &to_layer_0 X   &mkp MB4        &mkp MB5        &to_layer_0 B   &msc SCRL_DOWN  &msc SCRL_RIGHT    &trans  &trans  &trans  &trans    &msc SCRL_RIGHT  &msc SCRL_DOWN  &to_layer_0 N   &mkp MB4        &mkp MB5        &to_layer_0 DOT  &to_layer_0 FSLH
+&trans           &trans                          &trans          &trans          &trans          &trans                                               &trans           &trans                                                                           &trans
             >;
         };
 
