@@ -1,57 +1,51 @@
-# ZaruBallファームウェア
-自作キーボードZaruBallのファームウェアです。<br>
-自分の好みにキーマップを編集したらActionからWorkflowを実行してファームウェアをビルドしてください。<br>
-キーマップの編集はkeymap editor, ZMK Studio両方対応しています。
+# ZaruBall-v3.x ファームウェア（40％カスタム & 装飾キー最適化）
+
+自作キーボードZaruBall-v3.xのブランチをベースに、**40%キーボード的レイアウト & 独自装飾・マウス操作キー配置**へカスタムした自分用のファームウェアです。  
+Macでの操作性、テンティング姿勢での最小限の移動を重視し、手に馴染むよう割り当てを調整しました。
+
+***
+
+## カスタム内容
+
+- 40%配列を意識した最小限キー＋最小レイヤー
+- 装飾キー（Ctrl, Shift, Alt, Command）のポジション移動
+- 打鍵しやすい場所へ**マウスクリックやカーソルキー機能**を割り当て
+- レイヤー切り替えやワンショットキーのカスタマイズ(Mac, Arcのショトカ)
+
+***
 
 ## ビルド方法
-既にデフォルトのキーマップは作成してあります。<br>
-まずはこのキーマップでファームウェアをビルドしてキーボードに書き込んでみましょう。<br>
 
-キーマップのビルドはGithub Actionにて行います。<br>
-1. リポジトリを開いて上部のタブからActionを選びます。
-2. 左側の.github/workflows/build.ymlを左クリック。
-3. 右のRun Workflowを押し、Branchを選択してからRun workflowを押下。
-4. 新しいファームウェアが数分でビルドされます。ビルドの履歴の最も上が最新のモノです。
-5. ビルドが成功するとすべての項目に緑色のチェックマークが付きます。赤いXが表示されるときはエラーによりビルドできていません。
-6. 完成したファーウェアはページ下部のArtifactsからダウンロードできます。
-7. ダウンロードしたら解凍します。left, right, resetのそれぞれが含まれる名前のファイルが3つ生成されている事を確認してください。resetのファイルはキーボードに不具合が生じた時に利用するファームウェアなので今回は使用しません。
-8. 右手のキーボードをPCに接続します。マイコン左上のリセットボタンをダブルクリックして、PCにボリュームとして認識させます。
-9. PCのエクスプローラーでXIAO SENSEという名の記憶装置が認識されたら、その中に解答したrightのファイルをコピーします。
-10. 次に左手側のキーボードを接続し、同様の手続きでボリュームとして認識させます。
-11. 再度表示されたXIAO SENSEの中にleftのファイルをアップロードします。
-12. キーボードの電源を入れ、Bluetoothの接続を行ってください。
+1. GitHubでこのリポジトリをフォーク
+2. 上部「Actions」タブを開く
+3. 左メニュー `.github/workflows/build.yml` をクリック
+4. 右側「Run Workflow」→ブランチを選択→実行
+5. 数分でビルドが完了し、緑のチェックで成功がわかる
+6. 「Artifacts」からビルド済みファームをダウンロード＆解凍
+7. `left`, `right`, `reset` 3種ファイルが揃ってるか確認
+8. 右手キーボードをリセット＆PC認識
+9. エクスプローラーで `right` ファイルを書き込み
+10. 左手キーボードも同様に `left` ファイル
+11. 完了後、Bluetoothペアリング
 
+***
 
+## キーマップの編集方法
 
-## keymapの編集
-キーマップの編集には複数の方法があります。それぞれの特性を理解して適切なものを適宜利用しましょう。
-* .keymapファイルを直接編集する方法
-    - ZMKの機能をフル活用できる。ファイル内を直接編集するため難易度は高い。ビルドが必要
-* keymap editorを利用する方法
-    - GUI上で編集でき理解しやすい。ほとんどのZMKの機能を利用できる。ビルドが必要
-* ZMK Studioを利用する方法
-    - アプリ上で編集でき理解しやすい。機能が限定的。ビルド不要でファームウェアをキーボードに書き込む必要がない。
+- `.keymap` ファイルを直接編集
+    - 優先されるのは `config/ZaruBall.keymap`
+    - 公式参考: [https://zmk.dev/docs/keymaps](https://zmk.dev/docs/keymaps)
+- **keymap editor**
+    - [https://nickcoutsos.github.io/keymap-editor/](https://nickcoutsos.github.io/keymap-editor/)
+    - Forkしたリポジトリとブランチ指定して使える
+    - 編集後Saveで自動ビルド
+- **ZMK Studio**
+    - &studio_unlock キー押下後編集可能
+    - Saveでキーボード即書き込み
 
-### .keymapを直接編集する
-キーマップを直接編集したい方は
-[config/ZaruBall.keymap](config/Z]]aruBall.keymap)
-を編集してください。<br>
-boards/shields下にもZaruBall.keymapが存在しますが、config化のものの方が優先されます。<br>
-詳しくは公式Docs
-https://zmk.dev/docs/keymaps
-を解読してみてください。
+***
 
+## オリジナル＆参考リポジトリ
 
-### keymap editorを利用する方法
-keymap editor
-https://nickcoutsos.github.io/keymap-editor/
-を起動し、Githubアカウントを登録。<br>
-SourceにGithub、Repositoryにフォークした本リポジトリ、Branchを指定するとキーマップが編集できるようになります。<br>
-GUI上で対応するキーをクリックして使用したいキーコードを入力することで編集できます。<br>
-Saveボタンで参照しているリポジトリにpushでき、自動的にWorkflowが実行されて新しいファームウェアがビルドされます。
-
-
-### ZMK Studioを利用する方法
-ZMK Studioにはアプリ版とブラウザ版が存在し、ブラウザ版にはUSB接続時のみ使用可能という制約がある。<br>
-ZMK Studio起動後、 &studio_unlock　を配置したキーを押下することでStudioで編集が可能となる。<br>
-右上の保存ボタンを推すことで、キーマップをすぐにキーボードへ反映できる。
+- 元リポジトリ: https://github.com/ImSota/zmk-config-ZaruBall
+- keymap editor: https://nickcoutsos.github.io/keymap-editor/
