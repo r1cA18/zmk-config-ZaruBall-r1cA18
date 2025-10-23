@@ -122,11 +122,11 @@
             display-name = "Mouse";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&trans              &trans         &trans         &trans         &trans         &trans                             &trans  &trans  &trans  &trans                     &trans          &trans         &trans         &trans              &trans             &to_layer_0 BSLH
-&to_layer_0 TAB     &to_layer_0 Q  &to_layer_0 W  &to_layer_0 E  &to_layer_0 R  &to_layer_0 T                      &trans  &trans  &trans  &trans                     &to_layer_0 Y   &to_layer_0 U  &to_layer_0 I  &to_layer_0 O       &to_layer_0 P      &to_layer_0 EQUAL
-&to_layer_0 ESC     &to_layer_0 A  &mkp RCLK      &mkp MCLK      &mkp LCLK      &msc SCRL_UP    &msc SCRL_LEFT     &trans  &trans  &trans  &trans    &msc SCRL_LEFT   &msc SCRL_UP    &mkp LCLK      &mkp MCLK      &mkp RCLK           &to_layer_0 SEMI   &to_layer_0 MINUS
-&to_layer_0 LSHIFT  &to_layer_0 Z  &to_layer_0 X  &mkp MB4       &mkp MB5       &msc SCRL_DOWN  &msc SCRL_RIGHT    &trans  &trans  &trans  &trans    &msc SCRL_RIGHT  &msc SCRL_DOWN  &mkp MB4       &mkp MB5       &to_layer_0 PERIOD  &to_layer_0 SLASH  &to_layer_0 SQT
-&trans              &trans                        &trans         &trans         &trans          &trans                                               &trans           &trans                                                                               &trans
+&trans              &trans         &trans         &trans         &trans         &trans                             &trans  &trans  &trans  &trans                     &trans          &trans         &trans         &trans         &trans             &to_layer_0 BSLH
+&to_layer_0 TAB     &to_layer_0 Q  &to_layer_0 W  &to_layer_0 E  &to_layer_0 R  &to_layer_0 T                      &trans  &trans  &trans  &trans                     &to_layer_0 Y   &to_layer_0 U  &to_layer_0 I  &to_layer_0 O  &to_layer_0 P      &to_layer_0 EQUAL
+&to_layer_0 ESC     &mkp RCLK      &mkp MCLK      &mkp LCLK      &to_layer_0 F  &msc SCRL_UP    &msc SCRL_LEFT     &trans  &trans  &trans  &trans    &msc SCRL_LEFT   &msc SCRL_UP    &to_layer_0 J  &mkp LCLK      &mkp MCLK      &mkp RCLK          &to_layer_0 MINUS
+&to_layer_0 LSHIFT  &to_layer_0 Z  &mkp MB4       &mkp MB5       &to_layer_0 V  &msc SCRL_DOWN  &msc SCRL_RIGHT    &trans  &trans  &trans  &trans    &msc SCRL_RIGHT  &msc SCRL_DOWN  &to_layer_0 M  &mkp MB4       &mkp MB5       &to_layer_0 SLASH  &to_layer_0 SQT
+&trans              &trans                        &trans         &trans         &trans          &trans                                               &trans           &trans                                                                          &trans
             >;
         };
 
