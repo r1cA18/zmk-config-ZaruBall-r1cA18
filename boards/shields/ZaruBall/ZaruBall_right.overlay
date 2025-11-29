@@ -1,5 +1,4 @@
 #include "ZaruBall.dtsi"
-#include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 
 &xiao_serial { status = "disabled"; };
@@ -27,6 +26,4 @@
     status = "okay";
     compatible = "zmk,input-listener";
     device = <&trackball>;
-    // 軸を90度回転（X↔Y入れ替え）
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
 };
