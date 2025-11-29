@@ -27,4 +27,5 @@
     compatible = "zmk,input-listener";
     device = <&trackball>;
     layer = <1>;  // マウスレイヤーに遷移
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;  // 軸を90度回転（X↔Y入れ替え）
 };
