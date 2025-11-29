@@ -26,4 +26,5 @@
     status = "okay";
     compatible = "zmk,input-listener";
     device = <&trackball>;
+    layer = <1>;  // マウスレイヤーに遷移
 };
