@@ -185,11 +185,11 @@
             display-name = "Mac";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&none                    &none       &none                &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none                 &none             &none             &none                 &none                            &none
-&kp F19                  &kp Q       &kp W                &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y                 &kp U             &kp I             &kp O                 &kp P                            &kp RBKT
-&SandS LEFT_CONTROL ESC  &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&kp LEFT                 &kp Z       &kp X                &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N                 &kp M             &kp COMMA         &kp DOT               &kp FSLH                         &kp RIGHT
-&SandS LGUI LANG2        &kp C_MUTE                       &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                  &SandS RA(RIGHT_GUI) LANG1
+&kp LG(GRAVE)            &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none                 &none             &none             &none    &none                            &studio_unlock
+&kp F19                  &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y                 &kp U             &kp I             &kp O    &kp P                            &kp RBKT
+&SandS LEFT_CONTROL ESC  &kp A       &kp S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&kp LEFT                 &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N                 &kp M             &kp COMMA         &kp DOT  &kp FSLH                         &kp RIGHT
+&SandS LGUI LANG2        &kp C_MUTE         &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                                                     &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
@@ -262,7 +262,7 @@
             display-name = "Ctrl";
             bindings = <
 &trans       &trans         &trans        &trans        &trans        &trans                          &trans  &trans  &trans  &trans            &trans          &trans               &trans        &trans           &trans  &trans
-&kp C_SLEEP  &kp LG(MINUS)  &kp LG(PLUS)  &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP                    &trans  &trans  &trans  &trans            &trans          &trans               &trans        &trans           &trans  &studio_unlock
+&kp C_SLEEP  &kp LG(MINUS)  &kp LG(PLUS)  &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP                    &trans  &trans  &trans  &trans            &trans          &trans               &trans        &trans           &trans  &trans
 &trans       &bt_mac        &bt_win       &bt_ipad      &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR        &trans  &trans  &trans  &trans    &trans  &msc SCRL_LEFT  &msc SCRL_DOWN       &msc SCRL_UP  &msc SCRL_RIGHT  &trans  &trans
 &trans       &trans         &out OUT_USB  &out OUT_TOG  &out OUT_BLE  &trans        &bt BT_CLR_ALL    &trans  &trans  &trans  &trans    &trans  &input_userid   &input_email_proton  &trans        &trans           &trans  &trans
 &trans       &trans                       &trans        &trans        &trans        &trans                                              &trans  &trans                                                                      &trans
