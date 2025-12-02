@@ -175,6 +175,7 @@
         };
 
         // ゲームモード切り替えマクロ
+
         to_game: to_game {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -286,11 +287,11 @@
             display-name = "Game";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&kp N1          &kp N2      &kp N3  &kp N4            &kp N5              &kp N6                                      &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                        &none       &none      &none      &none     &none     &none
-&kp TAB         &kp Q       &kp W   &kp E             &kp R               &kp T                                       &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                      &kp Y       &kp U      &kp I      &kp O     &kp P     &kp RBKT
-&kp ESC         &kp A       &kp S   &kp D             &kp F               &kp G             &kp LEFT_CONTROL          &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS         &kp RIGHT_SHIFT  &kp H       &kp J      &kp K      &kp L     &kp SEMI  &kp MINUS
-&kp LEFT_SHIFT  &kp Z       &kp X   &kp C             &kp V               &kp B             &kp LEFT_ALT              &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS          &kp UP           &kp N       &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RIGHT
-&kp LEFT_ALT    &kp C_MUTE          &mo CONTROL       &kp LEFT_CONTROL    &kp SPACE         &mo LOWER                                                                          &kp BSPC         &kp ENTER                                          &kp LANG1
+&kp N1                 &kp N2      &kp N3  &kp N4       &kp N5  &kp N6                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                       &none      &none  &none      &none    &none     &none
+&kp TAB                &kp Q       &kp W   &kp E        &kp R   &kp T                          &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                     &kp Y      &kp U  &kp I      &kp O    &kp P     &kp RBKT
+&kp ESC                &kp A       &kp S   &kp D        &kp F   &kp G      &kp LEFT_CONTROL    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &kp RIGHT_SHIFT  &kp H      &kp J  &kp K      &kp L    &kp SEMI  &kp MINUS
+&kp LEFT_SHIFT         &kp Z       &kp X   &kp C        &kp V   &kp B      &kp LEFT_ALT        &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP           &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT
+&SandS LEFT_GUI LANG2  &kp C_MUTE          &mo CONTROL  &mo 5   &kp SPACE  &mo LOWER                                                                   &kp BSPC         &kp ENTER                                       &kp LANG1
             >;
         };
 
