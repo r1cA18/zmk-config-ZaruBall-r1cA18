@@ -204,7 +204,7 @@
         motion-gpios = <&gpio1 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         zephyr,axis-x = <INPUT_REL_Y>;
         zephyr,axis-y = <INPUT_REL_X>;
-        invert-y;
+        invert-x;
         res-cpi = <600>;
 
         force-awake;
