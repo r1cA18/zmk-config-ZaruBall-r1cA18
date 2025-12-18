@@ -7,6 +7,9 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
 
+// ZMK Studio unlock behavior
+&studio_unlock {};
+
 // レイヤー定義（Vim-like モーダルシステム）
 
 #define NORMAL_MAC   0   // Normal Mode - Mac (デフォルト)
