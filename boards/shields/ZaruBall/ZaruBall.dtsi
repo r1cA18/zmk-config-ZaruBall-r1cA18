@@ -102,8 +102,11 @@
 
 / {
     trackball_listener: trackball_listener {
-    compatible = "zmk,input-listener";
-    status = "disabled";
-    device = <&trackball>;
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&trackball>;
+
+        /* レイヤー8 (SCROLL) でスクロールモード有効 */
+        scroll-layers = <8>;
     };
 };
