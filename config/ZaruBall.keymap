@@ -76,6 +76,56 @@
 
             display-name = "SandS";
         };
+
+        // ノーマルモード用: タップでインサート+言語切替、ホールドで修飾キー
+
+        ht_ins_mac_en: ht_ins_mac_en {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&to_insert_mac_en>;
+        };
+
+        ht_ins_mac_jp: ht_ins_mac_jp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&to_insert_mac_jp>;
+        };
+
+        ht_ins_win_en: ht_ins_win_en {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&to_insert_win_en>;
+        };
+
+        ht_ins_win_jp: ht_ins_win_jp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&to_insert_win_jp>;
+        };
+
+        ht_ins_ipad_en: ht_ins_ipad_en {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&to_insert_ipad_en>;
+        };
+
+        ht_ins_ipad_jp: ht_ins_ipad_jp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&to_insert_ipad_jp>;
+        };
     };
 };
 
@@ -126,6 +176,73 @@
             bindings = <&to BASE_GAME>;
             label = "TO_GAME";
         };
+
+        // インサート→ノーマル（英語に切り替えてから戻る）
+
+        to_normal_mac_en: to_normal_mac_en {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG2 &to NORMAL_MAC>;
+            label = "TO_NORMAL_MAC_EN";
+        };
+
+        to_normal_win_en: to_normal_win_en {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG2 &to NORMAL_WIN>;
+            label = "TO_NORMAL_WIN_EN";
+        };
+
+        to_normal_ipad_en: to_normal_ipad_en {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG2 &to NORMAL_IPAD>;
+            label = "TO_NORMAL_IPAD_EN";
+        };
+
+        // ノーマル→インサート（言語切り替え付き）
+
+        to_insert_mac_en: to_insert_mac_en {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to INSERT_MAC &kp LANG2>;
+            label = "TO_INSERT_MAC_EN";
+        };
+
+        to_insert_mac_jp: to_insert_mac_jp {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to INSERT_MAC &kp LANG1>;
+            label = "TO_INSERT_MAC_JP";
+        };
+
+        to_insert_win_en: to_insert_win_en {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to INSERT_WIN &kp LANG2>;
+            label = "TO_INSERT_WIN_EN";
+        };
+
+        to_insert_win_jp: to_insert_win_jp {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to INSERT_WIN &kp LANG1>;
+            label = "TO_INSERT_WIN_JP";
+        };
+
+        to_insert_ipad_en: to_insert_ipad_en {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to INSERT_IPAD &kp LANG2>;
+            label = "TO_INSERT_IPAD_EN";
+        };
+
+        to_insert_ipad_jp: to_insert_ipad_jp {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to INSERT_IPAD &kp LANG1>;
+            label = "TO_INSERT_IPAD_JP";
+        };
     };
 };
 
@@ -146,7 +263,7 @@
 &kp F19               &kp Q       &kp W  &kp E            &kp R                &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y      &kp U     &to INSERT_MAC  &kp O      &kp P                            &kp RBKT
 &kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F  &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp LEFT   &kp DOWN  &kp UP          &kp RIGHT  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
 &HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N      &kp M     &mkp MB4        &mkp MB5   &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2     &kp C_MUTE         &mo CONTROL      &mkp MCLK            &mkp LCLK            &mo SCROLL                                                                       &kp BSPC                &mkp RCLK                                                                        &SandS RA(RIGHT_GUI) LANG1
+&ht_ins_mac_en LGUI 0 &kp C_MUTE         &mo CONTROL      &mkp MCLK            &mkp LCLK            &mo SCROLL                                                                       &kp BSPC                &mkp RCLK                                                                        &ht_ins_mac_jp RA(RIGHT_GUI) 0
             >;
         };
 
@@ -160,7 +277,7 @@
 &kp F19               &kp Q       &kp W                    &kp E            &kp R                &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y      &kp U     &to INSERT_WIN  &kp O      &kp P                                &kp RBKT
 &kp LGUI              &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F  &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp LEFT   &kp DOWN  &kp UP          &kp RIGHT  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
 &HRM LEFT_SHIFT LEFT  &kp Z       &kp X                    &kp C            &kp V                &mkp MB5         &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &mkp MB4   &kp M     &kp COMMA       &kp DOT    &kp FSLH                             &HRM RIGHT_SHIFT RIGHT
-&SandS LCTL LANG2     &kp C_MUTE                           &mo CONTROL      &mkp LCLK            &mkp MCLK        &mo SCROLL                                                                       &kp BSPC                &mkp RCLK                                                                            &SandS RA(RIGHT_CONTROL) LANG1
+&ht_ins_win_en LCTL 0 &kp C_MUTE                           &mo CONTROL      &mkp LCLK            &mkp MCLK        &mo SCROLL                                                                       &kp BSPC                &mkp RCLK                                                                            &ht_ins_win_jp RA(RIGHT_CONTROL) 0
             >;
         };
 
@@ -174,7 +291,7 @@
 &kp F19               &kp Q       &kp W                &kp E            &kp R            &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y      &kp U     &to INSERT_IPAD  &kp O      &kp P                            &kp RBKT
 &kp LCTRL             &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F  &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp LEFT   &kp DOWN  &kp UP           &kp RIGHT  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
 &HRM LEFT_SHIFT LEFT  &kp Z       &kp X                &kp C            &kp V            &mkp MB5             &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &mkp MB4   &kp M     &kp COMMA        &kp DOT    &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2     &kp C_MUTE                       &mo CONTROL      &mkp LCLK        &mkp MCLK            &mo SCROLL                                                                       &kp BSPC                &mkp RCLK                                                                         &SandS RA(RIGHT_GUI) LANG1
+&ht_ins_ipad_en LGUI 0 &kp C_MUTE                       &mo CONTROL      &mkp LCLK        &mkp MCLK            &mo SCROLL                                                                       &kp BSPC                &mkp RCLK                                                                         &ht_ins_ipad_jp RA(RIGHT_GUI) 0
             >;
         };
 
@@ -189,7 +306,7 @@
             bindings = <
 &kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none            &none  &none      &none    &none                            &none
 &kp F19               &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y            &kp U  &kp I      &kp O    &kp P                            &kp ESC
-&to NORMAL_MAC        &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H            &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&to_normal_mac_en     &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H            &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
 &HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N            &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
 &SandS LGUI LANG2     &kp C_MUTE         &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                              &SandS RA(RIGHT_GUI) LANG1
             >;
@@ -203,7 +320,7 @@
             bindings = <
 &none              &none       &none                    &none            &none                  &none                                     &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none             &none                 &none             &none                     &none                                &none
 &kp F19            &kp Q       &kp W                    &kp E            &kp R                  &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y             &kp U                 &kp I             &kp O                     &kp P                                &kp ESC
-&to NORMAL_WIN     &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F    &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_GUI H  &HRM RIGHT_CONTROL J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_CONTROL) L  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
+&to_normal_win_en  &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F    &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_GUI H  &HRM RIGHT_CONTROL J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_CONTROL) L  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
 &kp LEFT           &kp Z       &kp X                    &kp C            &kp V                  &kp B            &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N             &kp M                 &kp COMMA         &kp DOT                   &kp FSLH                             &kp RIGHT
 &SandS LCTL LANG2  &kp C_MUTE                           &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE  &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                          &SandS RA(RIGHT_CONTROL) LANG1
             >;
@@ -217,7 +334,7 @@
             bindings = <
 &none              &none       &none                &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none                 &none             &none             &none                 &none                            &none
 &kp F19            &kp Q       &kp W                &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y                 &kp U             &kp I             &kp O                 &kp P                            &kp ESC
-&to NORMAL_IPAD    &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&to_normal_ipad_en &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
 &kp LEFT           &kp Z       &kp X                &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N                 &kp M             &kp COMMA         &kp DOT               &kp FSLH                         &kp RIGHT
 &SandS LGUI LANG2  &kp C_MUTE                       &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                  &SandS RA(RIGHT_GUI) LANG1
             >;
