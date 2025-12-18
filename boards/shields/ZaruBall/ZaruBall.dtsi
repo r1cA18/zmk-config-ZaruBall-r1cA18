@@ -214,6 +214,8 @@
     };
 };
 
+#include <dt-bindings/zmk/input_transform.h>
+
 #define SCROLL 8
 
 / {
@@ -226,6 +228,7 @@
         scroll {
             layers = <SCROLL>;
             input-processors = <
+                &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
                 &zip_xy_scaler 1 16
                 &zip_xy_to_scroll_mapper
             >;
