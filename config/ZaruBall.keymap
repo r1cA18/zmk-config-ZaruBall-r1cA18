@@ -78,50 +78,6 @@
 
             display-name = "SandS";
         };
-
-        // マウス移動: Shift押下で高速移動（mod-morph）
-
-        mm_left: mouse_move_left {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mmv MOVE_LEFT>, <&mmv_fast MOVE_LEFT>;
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        mm_down: mouse_move_down {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mmv MOVE_DOWN>, <&mmv_fast MOVE_DOWN>;
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        mm_up: mouse_move_up {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mmv MOVE_UP>, <&mmv_fast MOVE_UP>;
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        mm_right: mouse_move_right {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mmv MOVE_RIGHT>, <&mmv_fast MOVE_RIGHT>;
-
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        // 高速マウス移動（mmvの高速版）
-
-        mmv_fast: mmv_fast {
-            compatible = "zmk,behavior-mouse-move";
-            #binding-cells = <1>;
-            delay-ms = <0>;
-            time-to-max-speed-ms = <100>;
-            acceleration-exponent = <1>;
-        };
     };
 };
 
@@ -173,49 +129,6 @@
             label = "TO_GAME";
         };
 
-        // マウスレイヤー切り替えマクロ（各プラットフォーム用）
-
-        tog_mouse_mac: tog_mouse_mac {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to MOUSE_MAC>;
-            label = "TOG_MOUSE_MAC";
-        };
-
-        tog_mouse_win: tog_mouse_win {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to MOUSE_WIN>;
-            label = "TOG_MOUSE_WIN";
-        };
-
-        tog_mouse_ipad: tog_mouse_ipad {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to MOUSE_IPAD>;
-            label = "TOG_MOUSE_IPAD";
-        };
-
-        exit_mouse_mac: exit_mouse_mac {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to MAIN_MAC>;
-            label = "EXIT_MOUSE_MAC";
-        };
-
-        exit_mouse_win: exit_mouse_win {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to MAIN_WIN>;
-            label = "EXIT_MOUSE_WIN";
-        };
-
-        exit_mouse_ipad: exit_mouse_ipad {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to MAIN_IPAD>;
-            label = "EXIT_MOUSE_IPAD";
-        };
     };
 };
 
@@ -235,7 +148,7 @@
 &kp F19               &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y            &kp U  &kp I      &kp O    &kp P                            &mo 9
 &kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H            &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
 &HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N            &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2     &kp C_MUTE         &tog_mouse_mac   &SandS LEFT_SHIFT TAB  &lt 4 SPACE          &mo 3                                                                            &kp BSPC                &lt RAISE ENTER                                                              &SandS RA(RIGHT_GUI) LANG1
+&SandS LGUI LANG2     &kp C_MUTE         &to MOUSE_MAC    &SandS LEFT_SHIFT TAB  &lt 4 SPACE          &mo 3                                                                            &kp BSPC                &lt RAISE ENTER                                                              &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
@@ -247,7 +160,7 @@
             bindings = <
 &none              &none       &none                    &none            &none                  &none                                     &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none             &none                 &none             &none                     &none                                &none
 &kp F19            &kp Q       &kp W                    &kp E            &kp R                  &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y             &kp U                 &kp I             &kp O                     &kp P                                &kp ESC
-&tog_mouse_win     &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F    &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_GUI H  &HRM RIGHT_CONTROL J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_CONTROL) L  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
+&to MOUSE_WIN      &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F    &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_GUI H  &HRM RIGHT_CONTROL J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_CONTROL) L  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
 &kp LEFT           &kp Z       &kp X                    &kp C            &kp V                  &kp B            &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N             &kp M                 &kp COMMA         &kp DOT                   &kp FSLH                             &kp RIGHT
 &SandS LCTL LANG2  &kp C_MUTE                           &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE  &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                          &SandS RA(RIGHT_CONTROL) LANG1
             >;
@@ -261,7 +174,7 @@
             bindings = <
 &none              &none       &none                &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none                 &none             &none             &none                 &none                            &none
 &kp F19            &kp Q       &kp W                &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y                 &kp U             &kp I             &kp O                 &kp P                            &kp ESC
-&tog_mouse_ipad    &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&to MOUSE_IPAD     &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
 &kp LEFT           &kp Z       &kp X                &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N                 &kp M             &kp COMMA         &kp DOT               &kp FSLH                         &kp RIGHT
 &SandS LGUI LANG2  &kp C_MUTE                       &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                  &SandS RA(RIGHT_GUI) LANG1
             >;
@@ -305,11 +218,11 @@
             display-name = "Mous-M";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&none   &none  &none      &none      &none      &none                   &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &none           &none           &none         &none            &none  &none
-&none   &none  &none      &none      &none      &none                   &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &none           &none           &none         &none            &none  &exit_mouse_mac
-&none   &none  &mkp RCLK  &mkp MCLK  &mkp LCLK  &none     &none         &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &none   &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none  &none
-&none   &none  &none      &none      &none      &none     &none         &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &none   &none           &none           &none         &none            &none  &none
-&trans  &none             &trans     &mkp MB5   &mkp MB4  &mo SCROLL                                                            &trans  &trans                                                                &trans
+&trans  &trans  &trans     &trans     &trans     &trans                   &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                 &trans          &trans          &trans        &trans           &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans                   &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY               &trans          &trans          &trans        &trans           &trans  &to MAIN_MAC
+&trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans     &trans        &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans     &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans     &trans        &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans     &trans          &trans          &trans        &trans           &trans  &trans
+&trans  &trans             &trans     &mkp MB5   &mkp MB4   &mo SCROLL                                                            &trans     &trans                                                                 &trans
             >;
         };
 
@@ -319,11 +232,11 @@
             display-name = "Mous-W";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&none            &none  &none  &none        &none      &none                    &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                 &none      &none     &none   &none      &none  &none
-&none            &none  &none  &none        &none      &none                    &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY               &none      &none     &none   &none      &none  &kp ESC
-&exit_mouse_win  &none  &none  &none        &none      &none      &none         &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &none      &mm_left   &mm_down  &mm_up  &mm_right  &none  &none
-&none            &none  &none  &none        &none      &none      &none         &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &none      &none      &none     &none   &none      &none  &none
-&kp LCTL         &none         &mo CONTROL  &mkp MCLK  &mkp LCLK  &mo SCROLL                                                            &mkp RCLK  &mkp LCLK                                      &kp RA(RIGHT_CONTROL)
+&trans  &trans  &trans     &trans     &trans     &trans                   &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                 &trans          &trans          &trans        &trans           &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans                   &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY               &trans          &trans          &trans        &trans           &trans  &to MAIN_WIN
+&trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans     &trans        &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans     &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans     &trans        &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans     &trans          &trans          &trans        &trans           &trans  &trans
+&trans  &trans             &trans     &mkp MB5   &mkp MB4   &mo SCROLL                                                            &trans     &trans                                                                 &trans
             >;
         };
 
@@ -333,11 +246,11 @@
             display-name = "Mous-I";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&none             &none  &none  &none        &none      &none                    &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                 &none      &none     &none   &none      &none  &none
-&none             &none  &none  &none        &none      &none                    &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY               &none      &none     &none   &none      &none  &kp ESC
-&exit_mouse_ipad  &none  &none  &none        &none      &none      &none         &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &none      &mm_left   &mm_down  &mm_up  &mm_right  &none  &none
-&none             &none  &none  &none        &none      &none      &none         &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &none      &none      &none     &none   &none      &none  &none
-&kp LGUI          &none         &mo CONTROL  &mkp MCLK  &mkp LCLK  &mo SCROLL                                                            &mkp RCLK  &mkp LCLK                                      &kp RA(RIGHT_GUI)
+&trans  &trans  &trans     &trans     &trans     &trans                   &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                 &trans          &trans          &trans        &trans           &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans                   &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY               &trans          &trans          &trans        &trans           &trans  &to MAIN_IPAD
+&trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans     &trans        &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans     &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans     &trans        &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans     &trans          &trans          &trans        &trans           &trans  &trans
+&trans  &trans             &trans     &mkp MB5   &mkp MB4   &mo SCROLL                                                            &trans     &trans                                                                 &trans
             >;
         };
 
