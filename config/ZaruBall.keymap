@@ -12,21 +12,18 @@
 &studio_unlock {
 };
 
-// レイヤー定義（Vim-like モーダルシステム）
+// レイヤー定義
 
-#define NORMAL_MAC   0   // Normal Mode - Mac (デフォルト)
-#define NORMAL_WIN   1   // Normal Mode - Windows
-#define NORMAL_IPAD  2   // Normal Mode - iPad
-#define INSERT_MAC   3   // Insert Mode - Mac
-#define INSERT_WIN   4   // Insert Mode - Windows
-#define INSERT_IPAD  5   // Insert Mode - iPad
-#define LOWER        6   // 数字/記号 (Insert専用)
-#define RAISE        7   // 記号/ナビ (Insert専用)
-#define SCROLL       8   // スクロールモード
-#define CONTROL      9   // BT/システム
-#define BASE_GAME   10   // ゲーム用（兼業キーなし）
+#define DEFAULT_MAC   0   // Default - Mac
+#define DEFAULT_WIN   1   // Default - Windows
+#define DEFAULT_IPAD  2   // Default - iPad
+#define LOWER         3   // 数字/記号
+#define RAISE         4   // 記号/ナビ
+#define MOUSE         5   // マウスレイヤー
+#define CONTROL       6   // BT/システム
+#define BASE_GAME     7   // ゲーム用
 
-// layer-tapの設定（素早く切り替え、離した時に認識）
+// layer-tapの設定
 
 &lt {
     tapping-term-ms = <200>;
@@ -35,24 +32,7 @@
 
 / {
     behaviors {
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt LALT LANG2>, <&mo RAISE>, <&none>;
-        };
-
-        td1: tap_dance_1 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt RCTL LANG1>, <&mo RAISE>, <&none>;
-        };
-
         // ホームロウモッド用（高速タイピング中の誤発動防止設定）
-        // - balanced: タップとホールドのバランスが取れる
-        // - require-prior-idle-ms: タイピング中は修飾キー発動しない
-        // - hold-trigger-on-release: キーを離した時に判定（誤発動防止）
 
         HRM: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -67,7 +47,7 @@
             display-name = "HRM";
         };
 
-        // 通常の修飾キー用（親指・端のキー向け、標準的な反応速度）
+        // 通常の修飾キー用（親指・端のキー向け）
 
         SandS: SandS {
             compatible = "zmk,behavior-hold-tap";
@@ -77,56 +57,6 @@
             bindings = <&kp>, <&kp>;
 
             display-name = "SandS";
-        };
-
-        // ノーマルモード用: タップでインサート+言語切替、ホールドで修飾キー
-
-        ht_ins_mac_en: ht_ins_mac_en {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&to_insert_mac_en>;
-        };
-
-        ht_ins_mac_jp: ht_ins_mac_jp {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&to_insert_mac_jp>;
-        };
-
-        ht_ins_win_en: ht_ins_win_en {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&to_insert_win_en>;
-        };
-
-        ht_ins_win_jp: ht_ins_win_jp {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&to_insert_win_jp>;
-        };
-
-        ht_ins_ipad_en: ht_ins_ipad_en {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&to_insert_ipad_en>;
-        };
-
-        ht_ins_ipad_jp: ht_ins_ipad_jp {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&to_insert_ipad_jp>;
         };
     };
 };
@@ -152,21 +82,21 @@
         bt_mac: bt_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 0 &to NORMAL_MAC>;
+            bindings = <&bt BT_SEL 0 &to DEFAULT_MAC>;
             label = "BT_MAC";
         };
 
         bt_win: bt_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1 &to NORMAL_WIN>;
+            bindings = <&bt BT_SEL 1 &to DEFAULT_WIN>;
             label = "BT_WIN";
         };
 
         bt_ipad: bt_ipad {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 2 &to NORMAL_IPAD>;
+            bindings = <&bt BT_SEL 2 &to DEFAULT_IPAD>;
             label = "BT_IPAD";
         };
 
@@ -178,73 +108,6 @@
             bindings = <&to BASE_GAME>;
             label = "TO_GAME";
         };
-
-        // インサート→ノーマル（英語に切り替えてから戻る）
-
-        to_normal_mac_en: to_normal_mac_en {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LANG2 &to NORMAL_MAC>;
-            label = "TO_NORMAL_MAC_EN";
-        };
-
-        to_normal_win_en: to_normal_win_en {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LANG2 &to NORMAL_WIN>;
-            label = "TO_NORMAL_WIN_EN";
-        };
-
-        to_normal_ipad_en: to_normal_ipad_en {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LANG2 &to NORMAL_IPAD>;
-            label = "TO_NORMAL_IPAD_EN";
-        };
-
-        // ノーマル→インサート（言語切り替え付き）
-
-        to_insert_mac_en: to_insert_mac_en {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to INSERT_MAC &kp LANG2>;
-            label = "TO_INSERT_MAC_EN";
-        };
-
-        to_insert_mac_jp: to_insert_mac_jp {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to INSERT_MAC &kp LANG1>;
-            label = "TO_INSERT_MAC_JP";
-        };
-
-        to_insert_win_en: to_insert_win_en {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to INSERT_WIN &kp LANG2>;
-            label = "TO_INSERT_WIN_EN";
-        };
-
-        to_insert_win_jp: to_insert_win_jp {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to INSERT_WIN &kp LANG1>;
-            label = "TO_INSERT_WIN_JP";
-        };
-
-        to_insert_ipad_en: to_insert_ipad_en {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to INSERT_IPAD &kp LANG2>;
-            label = "TO_INSERT_IPAD_EN";
-        };
-
-        to_insert_ipad_jp: to_insert_ipad_jp {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to INSERT_IPAD &kp LANG1>;
-            label = "TO_INSERT_IPAD_JP";
-        };
     };
 };
 
@@ -252,98 +115,52 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // ==================== NORMAL MODE LAYERS ====================
-        // デフォルトモード: ナビゲーション、マウス操作
-        // hjkl = カーソル移動、親指クラスタ = マウスクリック
-        // ========== Normal Mode - Mac (BT0) ==========
+        // ==================== DEFAULT LAYERS ====================
+        // メインのタイピングレイヤー
+        // ========== Default - Mac (BT0) ==========
 
-        normal_mac_layer {
-            display-name = "Norm-M";
+        default_mac_layer {
+            display-name = "Mac";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&kp LG(GRAVE)          &none       &none  &none            &none                &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none        &none     &none           &none      &none                            &none
-&kp F19                &kp Q       &kp W  &kp E            &kp R                &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y        &kp U     &to INSERT_MAC  &kp O      &kp P                            &kp ESC
-&none                  &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F  &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp LEFT     &kp DOWN  &kp UP          &kp RIGHT  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&HRM LEFT_SHIFT LEFT   &kp Z       &kp X  &kp C            &kp V                &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N        &kp M     &mkp RCLK       &mkp MB4   &mkp MB5                         &HRM RIGHT_SHIFT RIGHT
-&ht_ins_mac_en LGUI 0  &kp C_MUTE         &mo CONTROL      &mkp MCLK            &mkp LCLK            &mo SCROLL                                                                       &kp BSPC                &lt 7 ENTER                                                                        &ht_ins_mac_jp RA(RIGHT_GUI) 0
+&kp LG(GRAVE)        &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none     &none  &none      &none    &none                            &none
+&kp F19              &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y     &kp U  &kp I      &kp O    &kp P                            &kp ESC
+&kp TAB              &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H     &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&HRM LEFT_SHIFT LEFT &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N     &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
+&SandS LGUI LANG2    &kp C_MUTE         &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo MOUSE                                                                       &kp BSPC                &lt RAISE ENTER                                                     &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
-        // ========== Normal Mode - Windows (BT1) ==========
+        // ========== Default - Windows (BT1) ==========
 
-        normal_win_layer {
-            display-name = "Norm-W";
+        default_win_layer {
+            display-name = "Win";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&none                  &none       &none                    &none            &none                &none                                     &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none      &none     &none           &none      &none                                &none
-&kp F19                &kp Q       &kp W                    &kp E            &kp R                &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y      &kp U     &to INSERT_WIN  &kp O      &kp P                                &kp RBKT
-&kp LGUI               &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F  &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp LEFT   &kp DOWN  &kp UP          &kp RIGHT  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
-&HRM LEFT_SHIFT LEFT   &kp Z       &kp X                    &kp C            &kp V                &mkp MB5         &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &mkp MB4   &kp M     &kp COMMA       &kp DOT    &kp FSLH                             &HRM RIGHT_SHIFT RIGHT
-&ht_ins_win_en LCTL 0  &kp C_MUTE                           &mo CONTROL      &mkp LCLK            &mkp MCLK        &mo SCROLL                                                                       &kp BSPC                &mkp RCLK                                                                            &ht_ins_win_jp RA(RIGHT_CONTROL) 0
+&none                &none       &none                    &none            &none                  &none                                     &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none             &none                 &none             &none                     &none                                &none
+&kp F19              &kp Q       &kp W                    &kp E            &kp R                  &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y             &kp U                 &kp I             &kp O                     &kp P                                &kp ESC
+&kp TAB              &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F    &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_GUI H  &HRM RIGHT_CONTROL J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_CONTROL) L  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
+&kp LEFT             &kp Z       &kp X                    &kp C            &kp V                  &kp B            &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N             &kp M                 &kp COMMA         &kp DOT                   &kp FSLH                             &kp RIGHT
+&SandS LCTL LANG2    &kp C_MUTE                           &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE  &mo MOUSE                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                          &SandS RA(RIGHT_CONTROL) LANG1
             >;
         };
 
-        // ========== Normal Mode - iPad (BT2) ==========
+        // ========== Default - iPad (BT2) ==========
 
-        normal_ipad_layer {
-            display-name = "Norm-I";
+        default_ipad_layer {
+            display-name = "iPad";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&none                   &none       &none                &none            &none            &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none      &none     &none            &none      &none                            &none
-&kp F19                 &kp Q       &kp W                &kp E            &kp R            &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y      &kp U     &to INSERT_IPAD  &kp O      &kp P                            &kp RBKT
-&kp LCTRL               &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F  &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp LEFT   &kp DOWN  &kp UP           &kp RIGHT  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&HRM LEFT_SHIFT LEFT    &kp Z       &kp X                &kp C            &kp V            &mkp MB5             &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &mkp MB4   &kp M     &kp COMMA        &kp DOT    &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&ht_ins_ipad_en LGUI 0  &kp C_MUTE                       &mo CONTROL      &mkp LCLK        &mkp MCLK            &mo SCROLL                                                                       &kp BSPC                &mkp RCLK                                                                         &ht_ins_ipad_jp RA(RIGHT_GUI) 0
-            >;
-        };
-
-        // ==================== INSERT MODE LAYERS ====================
-        // タイピングモード: 現在のベースレイヤーとほぼ同じ
-        // ESC位置でNormalに戻る、LOWER/RAISEアクセス可能
-        // ========== Insert Mode - Mac (BT0) ==========
-
-        insert_mac_layer {
-            display-name = "Ins-M";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            bindings = <
-&kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none            &none  &none      &none    &none                            &none
-&kp F19               &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y            &kp U  &kp I      &kp O    &kp P                            &kp ESC
-&to_normal_mac_en     &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H            &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N            &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2     &kp C_MUTE         &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                              &SandS RA(RIGHT_GUI) LANG1
-            >;
-        };
-
-        // ========== Insert Mode - Windows (BT1) ==========
-
-        insert_win_layer {
-            display-name = "Ins-W";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            bindings = <
-&none              &none       &none                    &none            &none                  &none                                     &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none             &none                 &none             &none                     &none                                &none
-&kp F19            &kp Q       &kp W                    &kp E            &kp R                  &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y             &kp U                 &kp I             &kp O                     &kp P                                &kp ESC
-&to_normal_win_en  &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F    &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_GUI H  &HRM RIGHT_CONTROL J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_CONTROL) L  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
-&kp LEFT           &kp Z       &kp X                    &kp C            &kp V                  &kp B            &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N             &kp M                 &kp COMMA         &kp DOT                   &kp FSLH                             &kp RIGHT
-&SandS LCTL LANG2  &kp C_MUTE                           &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE  &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                          &SandS RA(RIGHT_CONTROL) LANG1
-            >;
-        };
-
-        // ========== Insert Mode - iPad (BT2) ==========
-
-        insert_ipad_layer {
-            display-name = "Ins-I";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            bindings = <
-&none               &none       &none                &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none                 &none             &none             &none                 &none                            &none
-&kp F19             &kp Q       &kp W                &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y                 &kp U             &kp I             &kp O                 &kp P                            &kp ESC
-&to_normal_ipad_en  &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&kp LEFT            &kp Z       &kp X                &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N                 &kp M             &kp COMMA         &kp DOT               &kp FSLH                         &kp RIGHT
-&SandS LGUI LANG2   &kp C_MUTE                       &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                  &SandS RA(RIGHT_GUI) LANG1
+&none                &none       &none                &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none                 &none             &none             &none                 &none                            &none
+&kp F19              &kp Q       &kp W                &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y                 &kp U             &kp I             &kp O                 &kp P                            &kp ESC
+&kp TAB              &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&kp LEFT             &kp Z       &kp X                &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N                 &kp M             &kp COMMA         &kp DOT               &kp FSLH                         &kp RIGHT
+&SandS LGUI LANG2    &kp C_MUTE                       &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo MOUSE                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                  &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
         // ==================== FUNCTION LAYERS ====================
-        // ========== Lower Layer (Insert専用) ==========
+        // ========== Lower Layer ==========
 
         lower_layer {
             display-name = "Lower";
@@ -357,7 +174,7 @@
             >;
         };
 
-        // ========== Raise Layer (Insert専用) ==========
+        // ========== Raise Layer ==========
 
         raise_layer {
             display-name = "Raise";
@@ -371,16 +188,16 @@
             >;
         };
 
-        // ========== Scroll Layer (Normal時にトラックボールでスクロール) ==========
+        // ========== Mouse Layer (トラックボール + hjklマウス移動) ==========
 
-        scroll_layer {
-            display-name = "Scroll";
+        mouse_layer {
+            display-name = "Mouse";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans          &trans  &trans  &trans  &trans                                      &trans  &trans                                  &trans
+&trans  &trans  &trans  &trans     &trans     &trans                &trans  &trans  &trans  &trans            &trans          &trans          &trans        &trans           &trans    &trans
+&trans  &trans  &trans  &trans     &trans     &trans                &trans  &trans  &trans  &trans            &trans          &trans          &trans        &trans           &trans    &trans
+&trans  &trans  &trans  &trans     &trans     &trans  &trans        &trans  &trans  &trans  &trans    &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans    &trans
+&trans  &trans  &trans  &trans     &trans     &trans  &trans        &trans  &trans  &trans  &trans    &trans  &trans          &trans          &mkp RCLK     &mkp MB4         &mkp MB5  &trans
+&trans  &trans          &trans     &mkp MCLK  &mkp LCLK  &trans                                        &trans  &trans                                                                   &trans
             >;
         };
 
