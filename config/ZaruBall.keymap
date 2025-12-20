@@ -82,21 +82,21 @@
         bt_mac: bt_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 0 &to DEFAULT_MAC>;
+            bindings = <&bt BT_SEL 0 &to 1>;
             label = "BT_MAC";
         };
 
         bt_win: bt_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1 &to DEFAULT_WIN>;
+            bindings = <&bt BT_SEL 1 &to 1>;
             label = "BT_WIN";
         };
 
         bt_ipad: bt_ipad {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 2 &to DEFAULT_IPAD>;
+            bindings = <&bt BT_SEL 2 &to 1>;
             label = "BT_IPAD";
         };
 
@@ -105,7 +105,7 @@
         to_game: to_game {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to BASE_GAME>;
+            bindings = <&to 1>;
             label = "TO_GAME";
         };
     };
@@ -123,11 +123,11 @@
             display-name = "Mac";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&kp LG(GRAVE)        &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none     &none  &none      &none    &none                            &none
-&kp F19              &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y     &kp U  &kp I      &kp O    &kp P                            &kp ESC
-&kp TAB              &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H     &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&HRM LEFT_SHIFT LEFT &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N     &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2    &kp C_MUTE         &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo MOUSE                                                                       &kp BSPC                &lt RAISE ENTER                                                     &SandS RA(RIGHT_GUI) LANG1
+&kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none      &none  &none      &none    &none                            &none
+&kp F19               &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y      &kp U  &kp I      &kp O    &kp P                            &mo 5
+&kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H      &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
+&SandS LGUI LANG2     &kp C_MUTE         &mo 6            &SandS LEFT_SHIFT TAB  &lt 4 SPACE          &mo 3                                                                            &kp BSPC                &kp ENTER                                                              &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
@@ -137,11 +137,11 @@
             display-name = "Win";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&none                &none       &none                    &none            &none                  &none                                     &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none             &none                 &none             &none                     &none                                &none
-&kp F19              &kp Q       &kp W                    &kp E            &kp R                  &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y             &kp U                 &kp I             &kp O                     &kp P                                &kp ESC
-&kp TAB              &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F    &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_GUI H  &HRM RIGHT_CONTROL J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_CONTROL) L  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
-&kp LEFT             &kp Z       &kp X                    &kp C            &kp V                  &kp B            &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N             &kp M                 &kp COMMA         &kp DOT                   &kp FSLH                             &kp RIGHT
-&SandS LCTL LANG2    &kp C_MUTE                           &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE  &mo MOUSE                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                          &SandS RA(RIGHT_CONTROL) LANG1
+&none              &none       &none                    &none            &none                  &none                                     &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none             &none                 &none             &none                     &none                                &none
+&kp F19            &kp Q       &kp W                    &kp E            &kp R                  &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y             &kp U                 &kp I             &kp O                     &kp P                                &kp ESC
+&kp TAB            &kp A       &HRM LS(LEFT_CONTROL) S  &HRM LEFT_ALT D  &HRM LEFT_CONTROL F    &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_GUI H  &HRM RIGHT_CONTROL J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_CONTROL) L  &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
+&kp LEFT           &kp Z       &kp X                    &kp C            &kp V                  &kp B            &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N             &kp M                 &kp COMMA         &kp DOT                   &kp FSLH                             &kp RIGHT
+&SandS LCTL LANG2  &kp C_MUTE                           &mo 1            &SandS LEFT_SHIFT TAB  &lt 1 SPACE      &mo 1                                                                            &kp BSPC                &lt 1 ENTER                                                                                                              &SandS RA(RIGHT_CONTROL) LANG1
             >;
         };
 
@@ -151,11 +151,11 @@
             display-name = "iPad";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&none                &none       &none                &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none                 &none             &none             &none                 &none                            &none
-&kp F19              &kp Q       &kp W                &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y                 &kp U             &kp I             &kp O                 &kp P                            &kp ESC
-&kp TAB              &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&kp LEFT             &kp Z       &kp X                &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N                 &kp M             &kp COMMA         &kp DOT               &kp FSLH                         &kp RIGHT
-&SandS LGUI LANG2    &kp C_MUTE                       &mo CONTROL      &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo MOUSE                                                                        &kp BSPC                &lt RAISE ENTER                                                                                                  &SandS RA(RIGHT_GUI) LANG1
+&none              &none       &none                &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none                 &none             &none             &none                 &none                            &none
+&kp F19            &kp Q       &kp W                &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y                 &kp U             &kp I             &kp O                 &kp P                            &kp ESC
+&kp TAB            &kp A       &HRM LS(LEFT_GUI) S  &HRM LEFT_ALT D  &HRM LEFT_GUI F        &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &HRM RIGHT_CONTROL H  &HRM RIGHT_GUI J  &HRM RIGHT_ALT K  &HRM RS(RIGHT_GUI) L  &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&kp LEFT           &kp Z       &kp X                &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N                 &kp M             &kp COMMA         &kp DOT               &kp FSLH                         &kp RIGHT
+&SandS LGUI LANG2  &kp C_MUTE                       &mo 1            &SandS LEFT_SHIFT TAB  &lt 1 SPACE          &mo 1                                                                            &kp BSPC                &lt 1 ENTER                                                                                                      &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
@@ -193,11 +193,11 @@
         mouse_layer {
             display-name = "Mouse";
             bindings = <
-&trans  &trans  &trans  &trans     &trans     &trans                &trans  &trans  &trans  &trans            &trans          &trans          &trans        &trans           &trans    &trans
-&trans  &trans  &trans  &trans     &trans     &trans                &trans  &trans  &trans  &trans            &trans          &trans          &trans        &trans           &trans    &trans
-&trans  &trans  &trans  &trans     &trans     &trans  &trans        &trans  &trans  &trans  &trans    &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans    &trans
-&trans  &trans  &trans  &trans     &trans     &trans  &trans        &trans  &trans  &trans  &trans    &trans  &trans          &trans          &mkp RCLK     &mkp MB4         &mkp MB5  &trans
-&trans  &trans          &trans     &mkp MCLK  &mkp LCLK  &trans                                        &trans  &trans                                                                   &trans
+&trans  &trans  &trans  &trans  &trans     &trans               &trans  &trans  &trans  &trans            &trans          &trans          &trans        &trans           &trans    &trans
+&trans  &trans  &trans  &trans  &trans     &trans               &trans  &trans  &trans  &trans            &trans          &trans          &trans        &trans           &trans    &trans
+&trans  &trans  &trans  &trans  &trans     &trans     &trans    &trans  &trans  &trans  &trans    &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans    &trans
+&trans  &trans  &trans  &trans  &trans     &trans     &trans    &trans  &trans  &trans  &trans    &trans  &trans          &trans          &mkp RCLK     &mkp MB4         &mkp MB5  &trans
+&trans  &trans          &trans  &mkp MCLK  &mkp LCLK  &trans                                      &trans  &trans                                                                   &trans
             >;
         };
 
@@ -220,11 +220,11 @@
             display-name = "Game";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&kp N1                 &kp N2      &kp N3  &kp N4       &kp N5     &kp N6                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                       &none      &none  &none      &none    &none     &none
-&kp TAB                &kp Q       &kp W   &kp E        &kp R      &kp T                          &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                     &kp Y      &kp U  &kp I      &kp O    &kp P     &kp RBKT
-&kp ESC                &kp A       &kp S   &kp D        &kp F      &kp G      &kp LEFT_CONTROL    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &kp RIGHT_SHIFT  &kp H      &kp J  &kp K      &kp L    &kp SEMI  &kp MINUS
-&kp LEFT_SHIFT         &kp Z       &kp X   &kp C        &kp V      &kp B      &kp LEFT_ALT        &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP           &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT
-&SandS LEFT_GUI LANG2  &kp C_MUTE          &mo CONTROL  &mo RAISE  &kp SPACE  &mo LOWER                                                                   &kp BSPC         &kp ENTER                                       &kp LANG1
+&kp N1                 &kp N2      &kp N3  &kp N4  &kp N5  &kp N6                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                       &none      &none  &none      &none    &none     &none
+&kp TAB                &kp Q       &kp W   &kp E   &kp R   &kp T                          &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                     &kp Y      &kp U  &kp I      &kp O    &kp P     &kp RBKT
+&kp ESC                &kp A       &kp S   &kp D   &kp F   &kp G      &kp LEFT_CONTROL    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &kp RIGHT_SHIFT  &kp H      &kp J  &kp K      &kp L    &kp SEMI  &kp MINUS
+&kp LEFT_SHIFT         &kp Z       &kp X   &kp C   &kp V   &kp B      &kp LEFT_ALT        &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP           &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT
+&SandS LEFT_GUI LANG2  &kp C_MUTE          &mo 1   &mo 1   &kp SPACE  &mo 1                                                                       &kp BSPC         &kp ENTER                                       &kp LANG1
             >;
         };
 
