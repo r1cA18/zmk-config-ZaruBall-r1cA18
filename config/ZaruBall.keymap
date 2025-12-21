@@ -128,6 +128,50 @@
             bindings = <&to BASE_GAME>;
             label = "TO_GAME";
         };
+
+        // 言語切り替え + メインレイヤーに戻るマクロ
+
+        lang2_mac: lang2_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG2 &to MAIN_MAC>;
+            label = "LANG2_MAC";
+        };
+
+        lang1_mac: lang1_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG1 &to MAIN_MAC>;
+            label = "LANG1_MAC";
+        };
+
+        lang2_win: lang2_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG2 &to MAIN_WIN>;
+            label = "LANG2_WIN";
+        };
+
+        lang1_win: lang1_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG1 &to MAIN_WIN>;
+            label = "LANG1_WIN";
+        };
+
+        lang2_ipad: lang2_ipad {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG2 &to MAIN_IPAD>;
+            label = "LANG2_IPAD";
+        };
+
+        lang1_ipad: lang1_ipad {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG1 &to MAIN_IPAD>;
+            label = "LANG1_IPAD";
+        };
     };
 };
 
@@ -217,11 +261,11 @@
             display-name = "Mous-M";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&trans  &trans  &trans     &trans     &trans     &trans              &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans              &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans             &to 0      &mkp MB5   &mkp MB4  &mo 8                                                             &trans  &trans                                                                 &trans
+&trans      &trans  &trans     &trans     &trans     &trans              &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
+&trans      &trans  &trans     &trans     &trans     &trans              &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
+&trans      &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans      &trans  &trans     &trans     &trans     &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &trans          &trans        &trans           &trans  &trans
+&lang2_mac  &trans             &trans     &mkp MB5   &mkp MB4  &mo 8                                                             &trans  &trans                                                                 &lang1_mac
             >;
         };
 
@@ -231,11 +275,11 @@
             display-name = "Mous-W";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&trans  &trans  &trans     &trans     &trans     &trans              &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans              &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans             &to 1      &mkp MB5   &mkp MB4  &mo 8                                                             &trans  &trans                                                                 &trans
+&trans      &trans  &trans     &trans     &trans     &trans              &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
+&trans      &trans  &trans     &trans     &trans     &trans              &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
+&trans      &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans      &trans  &trans     &trans     &trans     &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &trans          &trans        &trans           &trans  &trans
+&lang2_win  &trans             &trans     &mkp MB5   &mkp MB4  &mo 8                                                             &trans  &trans                                                                 &lang1_win
             >;
         };
 
@@ -245,11 +289,11 @@
             display-name = "Mous-I";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&trans  &trans  &trans     &trans     &trans     &trans              &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans              &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans  &trans  &trans     &trans     &trans     &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &trans          &trans        &trans           &trans  &trans
-&trans  &trans             &to 2      &mkp MB5   &mkp MB4  &mo 8                                                             &trans  &trans                                                                 &trans
+&trans       &trans  &trans     &trans     &trans     &trans              &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
+&trans       &trans  &trans     &trans     &trans     &trans              &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
+&trans       &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans       &trans  &trans     &trans     &trans     &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &trans          &trans        &trans           &trans  &trans
+&lang2_ipad  &trans             &trans     &mkp MB5   &mkp MB4  &mo 8                                                             &trans  &trans                                                                 &lang1_ipad
             >;
         };
 
