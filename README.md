@@ -1,15 +1,15 @@
-# 🎮 ZaruBall Firmware
+# ZaruBall Firmware
 
 > 自作キーボード **ZaruBall** 用のZMKファームウェア設定です
 
-自分の好みにキーマップを編集したら、GitHub Actionsからビルドしてファームウェアを取得できます。  
+自分の好みにキーマップを編集したら、GitHub Actionsからビルドしてファームウェアを取得できます。
 **keymap editor** / **ZMK Studio** どちらにも対応しています。
 
 ---
 
-## ✨ このキーマップの特徴
+## このキーマップの特徴
 
-### 🖥️ マルチデバイス対応
+### マルチデバイス対応
 
 Bluetooth接続先ごとに最適化されたベースレイヤーを自動切り替え
 
@@ -19,48 +19,53 @@ Bluetooth接続先ごとに最適化されたベースレイヤーを自動切�
 | BT1 | Windows | Cmd=Ctrl, Win=GUI |
 | BT2 | iPad | Mac準拠 |
 
-> 💡 **Controlレイヤー**で `bt_mac` / `bt_win` / `bt_ipad` を押すだけで、BT接続先とレイヤーがセットで切り替わります
+> **Controlレイヤー**で `bt_mac` / `bt_win` / `bt_ipad` を押すだけで、BT接続先とレイヤーがセットで切り替わります
 
-### 📐 レイヤー構成
+### レイヤー構成
 
 ```
 ┌─────────────┬──────────────────────────────────────────────┐
 │ Layer 0-2   │ ベースレイヤー（Mac / Win / iPad）           │
 ├─────────────┼──────────────────────────────────────────────┤
-│ Layer 3     │ Mouse - トラックボール操作時に自動切替      │
+│ Layer 3     │ Lower - 数字 / Fキー                         │
 ├─────────────┼──────────────────────────────────────────────┤
-│ Layer 4     │ Lower - 数字 / Fキー / スクロールモード      │
+│ Layer 4     │ Raise - 記号 / カーソル移動                  │
 ├─────────────┼──────────────────────────────────────────────┤
-│ Layer 5     │ Raise - 記号 / カーソル移動                  │
+│ Layer 5-7   │ Mouse - マウス操作（Mac / Win / iPad）       │
 ├─────────────┼──────────────────────────────────────────────┤
-│ Layer 6     │ Control - BT制御 / メディア / マクロ         │
+│ Layer 8     │ Scroll - スクロールモード                    │
+├─────────────┼──────────────────────────────────────────────┤
+│ Layer 9     │ Control - BT制御 / メディア / マクロ         │
+├─────────────┼──────────────────────────────────────────────┤
+│ Layer 10    │ Game - ゲーム用（兼業キーなし）              │
 └─────────────┴──────────────────────────────────────────────┘
 ```
 
-### ⌨️ ホームロウモッド (HRM)
+### ホームロウモッド (HRM)
 
 ホームポジションに修飾キーを配置。
 高速タイピング時の誤発動を防ぐチューニング済み：
 
 | 左手 | キー | 右手 | キー |
 |:----:|:----:|:----:|:----:|
-| Shift+GUI | S | Shift+GUI | L |
-| Alt | D | Alt | K |
-| GUI(Cmd/Ctrl) | F | GUI | J |
-| Control | G | Control | H |
+| Alt | D | - | - |
+| Shift+GUI | F | - | - |
+| Control | G | - | - |
+| - | - | Hyper | ; |
 
 ```
-tapping-term-ms = 280   // ホールド判定時間
-require-prior-idle-ms = 150  // 連続タイプ中は発動しない
+tapping-term-ms = 300   // ホールド判定時間
+require-prior-idle-ms = 200  // 連続タイプ中は発動しない
 ```
 
-### 🖱️ トラックボール連携
+### トラックボール連携
 
-- **AML (Auto Mouse Layer)**: トラックボール操作で自動的にMouseレイヤーに移行
-- **スクロールモード**: Lowerレイヤー中はトラックボールがスクロールホイールに変化
+- **AML (Auto Mouse Layer)**: トラックボール操作で自動的にMouseレイヤーに移行（500ms維持）
+- **スクロールモード**: Layer 8 でトラックボールがスクロールホイールに変化
+- **デバイス別マウスレイヤー**: Mac/Win/iPadごとに最適化された修飾キー配置
 - 軸変換設定でトラックボールの向きに対応
 
-### 🔧 その他の便利機能
+### その他の便利機能
 
 | 機能 | 説明 |
 |:-----|:-----|
@@ -68,8 +73,36 @@ require-prior-idle-ms = 150  // 連続タイプ中は発動しない
 | ZMK Studio | `&studio_unlock` で接続中にリアルタイム編集可能 |
 | 入力マクロ | ユーザーID / メールアドレスをワンキーで入力 |
 | ロータリーエンコーダ | ボリューム / カーソル移動 |
+| ゲームモード | 兼業キーなしのシンプルなレイヤー |
 
 ---
+
+## ハードウェア設定
+
+### キースキャン
+
+- **方式**: Charlieplex マトリクス (`zmk,kscan-gpio-charlieplex`)
+- **マトリクス**: 16 columns × 18 rows
+
+### トラックボール
+
+- **センサー**: PMW3610 (SPI接続)
+- **CPI**: 600
+- **ピン配置**:
+  - SPI SCK: P1.15
+  - SPI MOSI/MISO: P1.13
+  - CS: P1.14
+  - Motion: P1.12
+
+### ロータリーエンコーダ
+
+- **ステップ数**: 30
+- **トリガー/回転**: 15
+- **ピン配置**: P0.9 / P0.10
+
+---
+
+## ビルド方法
 
 ### GitHub Actions でビルド
 
@@ -87,21 +120,21 @@ require-prior-idle-ms = 150  // 連続タイプ中は発動しない
 5. **左手キーボード**も同様に `left` ファイルを書き込み
 6. Bluetooth接続して完了！
 
-> ⚠️ `reset` ファイルは不具合発生時のリカバリ用です
+> `reset` ファイルは不具合発生時のリカバリ用です
 
 ---
 
-## ✏️ キーマップの編集
+## キーマップの編集
 
 ### 方法1: `.keymap` ファイルを直接編集
 
 最も自由度が高い方法。ZMKの全機能を利用可能：
 
-📝 **編集ファイル**: [`config/ZaruBall.keymap`](config/ZaruBall.keymap)
+**編集ファイル**: [`config/ZaruBall.keymap`](config/ZaruBall.keymap)
 
 > `boards/shields/` 配下にも同名ファイルがありますが、`config/` が優先されます
 
-📚 **参考ドキュメント**: [ZMK Keymaps](https://zmk.dev/docs/keymaps)
+**参考ドキュメント**: [ZMK Keymaps](https://zmk.dev/docs/keymaps)
 
 ### 方法2: Keymap Editor（GUI）
 
@@ -123,11 +156,23 @@ require-prior-idle-ms = 150  // 連続タイプ中は発動しない
 
 1. [ZMK Studio](https://zmk.studio/) を起動
 2. キーボードで `&studio_unlock` キーを押下
-3. リアルタイムで編集 → 右上の💾ボタンで即時反映
+3. リアルタイムで編集 → 右上の保存ボタンで即時反映
 
 ---
 
-## 🔗 関連リンク
+## 設定ファイル
+
+| ファイル | 説明 |
+|:---------|:-----|
+| `config/ZaruBall.keymap` | キーマップ定義 |
+| `config/ZaruBall.conf` | Kconfig設定（ドライバ有効化など） |
+| `boards/shields/ZaruBall/ZaruBall.dtsi` | ハードウェア定義（共通） |
+| `boards/shields/ZaruBall/ZaruBall_left.overlay` | 左手側オーバーレイ |
+| `boards/shields/ZaruBall/ZaruBall_right.overlay` | 右手側オーバーレイ |
+
+---
+
+## 関連リンク
 
 - [ZMK Firmware 公式ドキュメント](https://zmk.dev/docs)
 - [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/)
@@ -135,10 +180,10 @@ require-prior-idle-ms = 150  // 連続タイプ中は発動しない
 
 ---
 
-## 📝 Credits
+## Credits
 
 **Fork元リポジトリ**: [ImSota/zmk-config-ZaruBall](https://github.com/ImSota/zmk-config-ZaruBall)
 **参考キーマップ**: [keymap/claw44.pdf](https://github.com/ryoppippi/dotfiles/blob/2b48d80e095f08307b3ff717f03baa595314f4b1/keymap/claw44.pdf)
 
-このプロジェクトは上記リポジトリをフォークし、 **ryoppippi** さんに影響を受けてキーマップ設定を編集したものです。  
+このプロジェクトは上記リポジトリをフォークし、 **ryoppippi** さんに影響を受けてキーマップ設定を編集したものです。
 ZaruBallキーボードの開発者である **zaruSaru** さん、ワクワクするキーマップを公開してくださっている **ryoppippi** さん、本当にありがとうございます。
