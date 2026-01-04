@@ -1,5 +1,5 @@
-#include <dt-bindings/zmk/matrix_transform.h>
-#include <physical_layouts.dtsi>
+#include <dt-bindings/zmk/matrix_transform.h> // included when matrix transform added
+#include <physical_layouts.dtsi> // When using keys property include needed
 
 // chosen node
 / {
@@ -9,12 +9,13 @@
     };
 };
 
-// physical layouts
+// physical layouts (key propretyあり)
 / {
     physical_layout0: physical_layout0 {
         compatible = "zmk,physical-layout";
         display-name = "Default Layout";
         transform = <&default_transform>;
+        // chose nodeで設定しているからkscanいらない？ kscan = <&kscan0>;
         keys  //                     w   h    x    y     rot    rx    ry
         // Left Row0
             = <&key_physical_attrs 100 100    0   50       0     0     0>
@@ -121,7 +122,7 @@
     };
 };
 
-//matrix transform (Row is always the driver pin)
+//matrix transoform(Row is always the driver pin)
 / {
     default_transform: keymap_transform0 {
         compatible = "zmk,matrix-transform";
@@ -149,9 +150,9 @@
 / {
     left_encoder: encoder_left {
         compatible = "alps,ec11";
-        a-gpios = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&gpio0 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <80>;
+        a-gpios = <&gpio0  9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <30>;
         status = "disabled";
     };
 };
@@ -161,13 +162,11 @@
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder>;
-        triggers-per-rotation = <20>;
+        triggers-per-rotation = <15>;
     };
 };
 
 //trackball
-#include <zephyr/dt-bindings/input/input-event-codes.h>
-
 &pinctrl {
     spi0_default: spi0_default {
         group1 {
@@ -187,6 +186,8 @@
     };
 };
 
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
@@ -201,11 +202,12 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         motion-gpios = <&gpio1 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        res-cpi = <600>;
+        // evt-type = <INPUT_EV_REL>;
         zephyr,axis-x = <INPUT_REL_X>;
         zephyr,axis-y = <INPUT_REL_Y>;
         invert-x;
         invert-y;
-        res-cpi = <600>;
 
         force-awake;
         /* keep the sensor awake while ZMK activity state is ACTIVE,
@@ -214,24 +216,10 @@
     };
 };
 
-#include <dt-bindings/zmk/input_transform.h>
-
-#define SCROLL 8
-
 / {
     trackball_listener: trackball_listener {
-        compatible = "zmk,input-listener";
-        status = "disabled";
-        device = <&trackball>;
-
-        /* スクロールモード (レイヤー8) */
-        scroll {
-            layers = <SCROLL>;
-            input-processors = <
-                &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
-                &zip_xy_scaler 1 16
-                &zip_xy_to_scroll_mapper
-            >;
-        };
+    compatible = "zmk,input-listener";
+    status = "disabled";
+    device = <&trackball>;
     };
 };
