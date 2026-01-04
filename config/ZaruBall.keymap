@@ -1,6 +1,7 @@
 #include <behaviors/rgbled_widget.dtsi>
 #include <dt-bindings/zmk/mouse.h>
 #include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
@@ -25,6 +26,20 @@
 #define SCROLL       8   // スクロールモード
 #define CONTROL      9   // BT/システム
 #define BASE_GAME   10   // ゲーム用（兼業キーなし）
+
+// trackball_listener の設定
+&trackball_listener {
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_X_INVERT)
+                        &zip_temp_layer MOUSE_MAC 500>;
+    scroller {
+        layers = <SCROLL>;
+        input-processors = <
+            &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
+            &zip_xy_scaler 1 20
+            &zip_xy_to_scroll_mapper
+        >;
+    };
+};
 
 // layer-tapの設定（素早く切り替え、離した時に認識）
 
