@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: ImSota
+      url-base: https://github.com/ImSota
     - name: caksoylar
       url-base: https://github.com/caksoylar
   projects:
@@ -13,6 +15,9 @@ manifest:
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: badjeff
+      revision: main
+    - name: zmk-naginata
+      remote: ImSota
       revision: main
     - name: zmk-rgbled-widget
       remote: caksoylar
