@@ -7,7 +7,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/modifiers.h>
 
 // ZMK Studio unlock behavior
 
@@ -150,35 +149,35 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mkp RCLK>, <&kp S>;
-            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+            mods = <(0x99)>;  // MOD_LGUI|MOD_RGUI|MOD_LCTL|MOD_RCTL
         };
 
         mm_mclk: mm_mclk {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mkp MCLK>, <&kp D>;
-            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+            mods = <(0x99)>;  // MOD_LGUI|MOD_RGUI|MOD_LCTL|MOD_RCTL
         };
 
         mm_lclk: mm_lclk {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mkp LCLK>, <&kp F>;
-            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+            mods = <(0x99)>;  // MOD_LGUI|MOD_RGUI|MOD_LCTL|MOD_RCTL
         };
 
         mm_mb5: mm_mb5 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mkp MB5>, <&kp C>;
-            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+            mods = <(0x99)>;  // MOD_LGUI|MOD_RGUI|MOD_LCTL|MOD_RCTL
         };
 
         mm_mb4: mm_mb4 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mkp MB4>, <&kp V>;
-            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+            mods = <(0x99)>;  // MOD_LGUI|MOD_RGUI|MOD_LCTL|MOD_RCTL
         };
     };
 };
