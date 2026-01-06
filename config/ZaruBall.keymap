@@ -142,6 +142,43 @@
             tapping-term-ms = <200>;
             bindings = <&kp>, <&lang1_ipad>;
         };
+
+        // マウスボタン + ショートカット両対応（Cmd/Ctrl押下時は元のキー）
+
+        mm_rclk: mm_rclk {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mkp RCLK>, <&kp S>;
+            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+        };
+
+        mm_mclk: mm_mclk {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mkp MCLK>, <&kp D>;
+            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+        };
+
+        mm_lclk: mm_lclk {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mkp LCLK>, <&kp F>;
+            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+        };
+
+        mm_mb5: mm_mb5 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mkp MB5>, <&kp C>;
+            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+        };
+
+        mm_mb4: mm_mb4 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mkp MB4>, <&kp V>;
+            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+        };
     };
 };
 
@@ -327,8 +364,8 @@
             bindings = <
 &trans             &trans  &trans     &trans     &trans     &trans            &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
 &trans             &trans  &trans     &trans     &trans     &trans            &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans             &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans  &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans             &trans  &trans     &mkp MB5   &mkp MB4   &trans  &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
+&trans             &trans  &mm_rclk   &mm_mclk   &mm_lclk   &trans  &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans             &trans  &trans     &mm_mb5    &mm_mb4    &trans  &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
 &ht_l2_mac LGUI 0  &trans             &trans     &trans     &trans  &mo 8                                                             &trans  &trans                                                                 &ht_l1_mac RA(RIGHT_GUI) 0
             >;
         };
@@ -341,8 +378,8 @@
             bindings = <
 &trans                     &trans  &trans     &trans     &trans     &trans              &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
 &trans                     &trans  &trans     &trans     &trans     &trans              &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans                     &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans                     &trans  &trans     &mkp MB5   &mkp MB4   &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
+&trans                     &trans  &mm_rclk   &mm_mclk   &mm_lclk   &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans                     &trans  &trans     &mm_mb5    &mm_mb4    &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
 &ht_l2_win LEFT_CONTROL 0  &trans             &trans     &trans     &trans    &mo 8                                                             &trans  &trans                                                                 &ht_l1_win RA(RIGHT_CONTROL) 0
             >;
         };
@@ -355,8 +392,8 @@
             bindings = <
 &trans              &trans  &trans     &trans     &trans     &trans              &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
 &trans              &trans  &trans     &trans     &trans     &trans              &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans              &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans              &trans  &trans     &mkp MB5   &mkp MB4   &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
+&trans              &trans  &mm_rclk   &mm_mclk   &mm_lclk   &trans    &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans              &trans  &trans     &mm_mb5    &mm_mb4    &trans    &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
 &ht_l2_ipad LGUI 0  &trans             &trans     &trans     &trans    &mo 8                                                             &trans  &trans                                                                 &ht_l1_ipad RA(RIGHT_GUI) 0
             >;
         };
