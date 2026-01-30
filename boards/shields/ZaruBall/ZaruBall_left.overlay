@@ -1,5 +1,14 @@
 #include "ZaruBall.dtsi"
 
+// Step 2: SPI/trackball無効化（左側では不要）
+&spi0 {
+    status = "disabled";
+};
+
+&trackball {
+    status = "disabled";
+};
+
 &kscan0 {
     gpios
         = <&xiao_d 0 GPIO_ACTIVE_HIGH>//M1
@@ -19,6 +28,7 @@
     interrupt-gpios = <&xiao_d 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;//IGPIO
 };
 
+// Step 4: エンコーダ無効化（ピン競合確認）
 &left_encoder {
-    status = "okay";
+    status = "disabled";
 };
