@@ -13,21 +13,17 @@
 &studio_unlock {
 };
 
-// レイヤー定義
+// Layer definitions
 
-#define MAIN_MAC     0   // Main - Mac (デフォルト)
-#define MAIN_WIN     1   // Main - Windows
-#define MAIN_IPAD    2   // Main - iPad
-#define LOWER        3   // 数字/記号
-#define RAISE        4   // 記号/ナビ
-#define MOUSE_MAC    5   // マウス操作 - Mac
-#define MOUSE_WIN    6   // マウス操作 - Windows
-#define MOUSE_IPAD   7   // マウス操作 - iPad
-#define SCROLL       8   // スクロールモード
-#define CONTROL      9   // BT/システム
-#define BASE_GAME   10   // ゲーム用（兼業キーなし）
+#define MAIN     0  // Main
+#define LOWER    1  // Numbers/Symbols
+#define RAISE    2  // Symbols/Navigation
+#define MOUSE    3  // Mouse
+#define SCROLL   4  // Scroll
+#define CONTROL  5  // BT/System
+#define GAME     6  // Game
 
-// trackball_listener の設定
+// trackball_listener settings
 
 &trackball_listener {
     input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_X_INVERT)>;
@@ -42,7 +38,7 @@
     };
 };
 
-// layer-tapの設定（素早く切り替え、離した時に認識）
+// layer-tap settings
 
 &lt {
     tapping-term-ms = <200>;
@@ -65,10 +61,10 @@
             bindings = <&mt RCTL LANG1>, <&mo RAISE>, <&none>;
         };
 
-        // ホームロウモッド用（高速タイピング中の誤発動防止設定）
-        // - balanced: タップとホールドのバランスが取れる
-        // - require-prior-idle-ms: タイピング中は修飾キー発動しない
-        // - hold-trigger-on-release: キーを離した時に判定（誤発動防止）
+        // Homerow mods (prevent misfires during fast typing)
+        // - balanced: good balance between tap and hold
+        // - require-prior-idle-ms: won't trigger modifier while typing
+        // - hold-trigger-on-release: evaluate on key release (prevent misfires)
 
         HRM: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -83,7 +79,7 @@
             display-name = "HRM";
         };
 
-        // 通常の修飾キー用（親指・端のキー向け、標準的な反応速度）
+        // Normal modifier keys (for thumb/edge keys, standard response)
 
         SandS: SandS {
             compatible = "zmk,behavior-hold-tap";
@@ -95,57 +91,25 @@
             display-name = "SandS";
         };
 
-        // マウスレイヤー用: ホールドで修飾キー、タップで言語切り替え+メインレイヤーに戻る
+        // Mouse layer: hold for modifier, tap for language switch + return to main
 
-        ht_l2_mac: ht_lang2_mac {
+        ht_l2: ht_lang2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&lang2_mac>;
+            bindings = <&kp>, <&lang2>;
         };
 
-        ht_l1_mac: ht_lang1_mac {
+        ht_l1: ht_lang1 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&lang1_mac>;
+            bindings = <&kp>, <&lang1>;
         };
 
-        ht_l2_win: ht_lang2_win {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&lang2_win>;
-        };
-
-        ht_l1_win: ht_lang1_win {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&lang1_win>;
-        };
-
-        ht_l2_ipad: ht_lang2_ipad {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&lang2_ipad>;
-        };
-
-        ht_l1_ipad: ht_lang1_ipad {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&lang1_ipad>;
-        };
-
-        // マウスボタン + ショートカット両対応（Cmd/Ctrl押下時は元のキー）
+        // Mouse button + shortcut support (when Cmd/Ctrl held, send original key)
 
         mm_rclk: mm_rclk {
             compatible = "zmk,behavior-mod-morph";
@@ -210,80 +174,38 @@
             label = "INPUT_EMAIL_PROTON";
         };
 
-        // BT接続 + ベースレイヤー切り替えマクロ
+        // BT connection + base layer switch macro
 
         bt_mac: bt_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 0 &to MAIN_MAC>;
+            bindings = <&bt BT_SEL 0 &to MAIN>;
             label = "BT_MAC";
         };
 
-        bt_win: bt_win {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1 &to MAIN_WIN>;
-            label = "BT_WIN";
-        };
-
-        bt_ipad: bt_ipad {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&bt BT_SEL 2 &to MAIN_IPAD>;
-            label = "BT_IPAD";
-        };
-
-        // ゲームモード切り替えマクロ
+        // Game mode switch macro
 
         to_game: to_game {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to BASE_GAME>;
+            bindings = <&to GAME>;
             label = "TO_GAME";
         };
 
-        // 言語切り替え + メインレイヤーに戻るマクロ
+        // Language switch + return to main layer macros
 
-        lang2_mac: lang2_mac {
+        lang2: lang2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LANG2 &to MAIN_MAC>;
-            label = "LANG2_MAC";
+            bindings = <&kp LANG2 &to MAIN>;
+            label = "LANG2";
         };
 
-        lang1_mac: lang1_mac {
+        lang1: lang1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LANG1 &to MAIN_MAC>;
-            label = "LANG1_MAC";
-        };
-
-        lang2_win: lang2_win {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LANG2 &to MAIN_WIN>;
-            label = "LANG2_WIN";
-        };
-
-        lang1_win: lang1_win {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LANG1 &to MAIN_WIN>;
-            label = "LANG1_WIN";
-        };
-
-        lang2_ipad: lang2_ipad {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LANG2 &to MAIN_IPAD>;
-            label = "LANG2_IPAD";
-        };
-
-        lang1_ipad: lang1_ipad {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LANG1 &to MAIN_IPAD>;
-            label = "LANG1_IPAD";
+            bindings = <&kp LANG1 &to MAIN>;
+            label = "LANG1";
         };
     };
 };
@@ -292,47 +214,17 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // ==================== MAIN LAYERS ====================
-        // メインタイピングレイヤー（旧INSERT）
-        // ========== Main - Mac (BT0) ==========
+        // ==================== MAIN LAYER ====================
 
-        main_mac_layer {
-            display-name = "Main-M";
+        main_layer {
+            display-name = "Main";
             sensor-bindings = <&inc_dec_kp LG(KP_PLUS) LG(KP_MINUS)>;
             bindings = <
 &kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none        &none  &none      &none    &none                            &none
-&kp LC(T)             &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y        &kp U  &kp I      &kp O    &kp P                            &mo 9
+&kp LC(T)             &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y        &kp U  &kp I      &kp O    &kp P                            &mo CONTROL
 &kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H        &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
 &HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2     &kp C_MUTE         &to 5            &SandS LEFT_SHIFT TAB  &lt 4 SPACE          &mo 3                                                                            &kp BSPC                &lt 4 ENTER                                                              &SandS RA(RIGHT_GUI) LANG1
-            >;
-        };
-
-        // ========== Main - Windows (BT1) ==========
-
-        main_win_layer {
-            display-name = "Main-W";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            bindings = <
-&kp LA(TAB)                &none       &none  &none            &none                    &none                                     &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none        &none  &none      &none    &none                                &none
-&kp F19                    &kp Q       &kp W  &kp E            &kp R                    &kp T                                     &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y        &kp U  &kp I      &kp O    &kp P                                &mo 9
-&kp ESC                    &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_CONTROL) F  &HRM LEFT_GUI G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H        &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_CONTROL))) SEMI  &kp MINUS
-&HRM LEFT_SHIFT LEFT       &kp Z       &kp X  &kp C            &kp V                    &kp B            &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH                             &HRM RIGHT_SHIFT RIGHT
-&SandS LEFT_CONTROL LANG2  &kp C_MUTE         &to 6            &SandS LEFT_SHIFT TAB    &lt 4 SPACE      &mo 3                                                                            &kp BSPC                &lt 4 ENTER                                                                  &SandS RA(RIGHT_CONTROL) LANG1
-            >;
-        };
-
-        // ========== Main - iPad (BT2) ==========
-
-        main_ipad_layer {
-            display-name = "Main-I";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            bindings = <
-&kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none        &none  &none      &none    &none                            &none
-&kp F19               &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y        &kp U  &kp I      &kp O    &kp P                            &mo 9
-&kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H        &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2     &kp C_MUTE         &to 7            &SandS LEFT_SHIFT TAB  &lt 4 SPACE          &mo 3                                                                            &kp BSPC                &lt 4 ENTER                                                              &SandS RA(RIGHT_GUI) LANG1
+&SandS LGUI LANG2     &kp C_MUTE         &to MOUSE        &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                       &kp BSPC                &lt RAISE ENTER                                                          &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
@@ -365,52 +257,21 @@
             >;
         };
 
-        // ==================== MOUSE LAYERS ====================
-        // マウス操作レイヤー: HJKL = カーソル移動、Shift+HJKL = 高速移動
-        // 親指クラスタ = クリック操作、スクロールモードアクセス
-        // ========== Mouse Layer - Mac ==========
+        // ==================== MOUSE LAYER ====================
 
-        mouse_mac_layer {
-            display-name = "Mous-M";
+        mouse_layer {
+            display-name = "Mouse";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&trans             &trans  &trans    &trans    &trans    &trans            &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
-&trans             &trans  &trans    &trans    &trans    &trans            &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans             &trans  &mm_rclk  &mm_mclk  &mm_lclk  &trans  &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans             &trans  &trans    &mm_mb5   &mm_mb4   &trans  &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
-&ht_l2_mac LGUI 0  &trans            &trans    &trans    &trans  &mo 8                                                             &trans  &trans                                                                 &ht_l1_mac RA(RIGHT_GUI) 0
+&trans          &trans  &trans    &trans    &trans    &trans            &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
+&trans          &trans  &trans    &trans    &trans    &trans            &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
+&trans          &trans  &mm_rclk  &mm_mclk  &mm_lclk  &trans  &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
+&trans          &trans  &trans    &mm_mb5   &mm_mb4   &trans  &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
+&ht_l2 LGUI 0   &trans            &trans    &trans    &trans  &mo SCROLL                                                       &trans  &trans                                                                &ht_l1 RA(RIGHT_GUI) 0
             >;
         };
 
-        // ========== Mouse Layer - Windows ==========
-
-        mouse_win_layer {
-            display-name = "Mous-W";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            bindings = <
-&trans                     &trans  &trans    &trans    &trans    &trans            &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
-&trans                     &trans  &trans    &trans    &trans    &trans            &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans                     &trans  &mm_rclk  &mm_mclk  &mm_lclk  &trans  &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans                     &trans  &trans    &mm_mb5   &mm_mb4   &trans  &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
-&ht_l2_win LEFT_CONTROL 0  &trans            &trans    &trans    &trans  &mo 8                                                             &trans  &trans                                                                 &ht_l1_win RA(RIGHT_CONTROL) 0
-            >;
-        };
-
-        // ========== Mouse Layer - iPad ==========
-
-        mouse_ipad_layer {
-            display-name = "Mous-I";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            bindings = <
-&trans              &trans  &trans    &trans    &trans    &trans            &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE              &trans          &trans          &trans        &trans           &trans  &trans
-&trans              &trans  &trans    &trans    &trans    &trans            &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY            &trans          &trans          &trans        &trans           &trans  &trans
-&trans              &trans  &mm_rclk  &mm_mclk  &mm_lclk  &trans  &trans    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &trans  &trans
-&trans              &trans  &trans    &mm_mb5   &mm_mb4   &trans  &trans    &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
-&ht_l2_ipad LGUI 0  &trans            &trans    &trans    &trans  &mo 8                                                             &trans  &trans                                                                 &ht_l1_ipad RA(RIGHT_GUI) 0
-            >;
-        };
-
-        // ========== Scroll Layer (マウスレイヤー内でスクロール操作) ==========
+        // ========== Scroll Layer ==========
 
         scroll_layer {
             display-name = "Scroll";
@@ -423,22 +284,22 @@
             >;
         };
 
-        // ========== Control Layer (BT/システム) ==========
+        // ========== Control Layer (BT/System) ==========
 
         control_layer {
             display-name = "Ctrl";
             bindings = <
 &trans       &trans         &trans        &trans        &trans        &trans                          &trans  &trans  &trans  &trans            &trans         &trans               &trans  &trans  &trans  &trans
 &kp C_SLEEP  &kp LG(MINUS)  &kp LG(PLUS)  &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP                    &trans  &trans  &trans  &trans            &trans         &trans               &trans  &trans  &trans  &trans
-&trans       &bt_mac        &bt_win       &bt_ipad      &to_game      &bt BT_SEL 4  &bt BT_CLR        &trans  &trans  &trans  &trans    &trans  &trans         &trans               &trans  &trans  &trans  &trans
+&trans       &bt_mac        &bt BT_SEL 1  &bt BT_SEL 2  &to_game      &bt BT_SEL 4  &bt BT_CLR        &trans  &trans  &trans  &trans    &trans  &trans         &trans               &trans  &trans  &trans  &trans
 &trans       &trans         &out OUT_USB  &out OUT_TOG  &out OUT_BLE  &trans        &bt BT_CLR_ALL    &trans  &trans  &trans  &trans    &trans  &input_userid  &input_email_proton  &trans  &trans  &trans  &trans
 &trans       &trans                       &trans        &trans        &trans        &trans                                              &trans  &trans                                                      &trans
             >;
         };
 
-        // ========== Game Layer (兼業キーなし) ==========
+        // ========== Game Layer ==========
 
-        base_game_layer {
+        game_layer {
             display-name = "Game";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
