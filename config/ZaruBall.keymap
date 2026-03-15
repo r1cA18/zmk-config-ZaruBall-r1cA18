@@ -76,16 +76,6 @@
             display-name = "SandS";
         };
 
-        ArcTabS: ArcTabS {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            bindings = <&kp RIGHT_SHIFT>, <&kp LC(TAB)>;
-
-            display-name = "ArcTabS";
-        };
-
         // Mouse layer: hold for modifier, tap for language switch + return to main
 
         ht_l2: ht_lang2 {
@@ -208,7 +198,7 @@
             bindings = <
 &kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none        &none  &none      &none    &none                            &none
 &kp LC(T)             &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y        &kp U  &kp I      &kp O    &kp P                            &mo CONTROL
-&kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &ArcTabS                &kp H        &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &mt RIGHT_SHIFT LC(TAB) &kp H        &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
 &HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
 &SandS LGUI LANG2     &kp C_MUTE         &to MOUSE        &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                       &kp BSPC                &lt RAISE ENTER                                                          &SandS RA(RIGHT_GUI) LANG1
             >;
