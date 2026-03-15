@@ -3,6 +3,12 @@
 
 // chosen node
 / {
+    aliases {
+        led-red = &led0;
+        led-green = &led1;
+        led-blue = &led2;
+    };
+
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
