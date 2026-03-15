@@ -18,12 +18,6 @@ endif
 
 if SHIELD_ZARUBALL_LEFT
 
-config EC11
-    default y
-
-config EC11_TRIGGER_GLOBAL_THREAD
-    default y
-
 endif
 
 # Input Device(pmw3610)のためのコンフィグ

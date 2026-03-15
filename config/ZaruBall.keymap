@@ -149,14 +149,12 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp R &kp N1 &kp C &kp LS(A) &kp N1 &kp N8>;
-            label = "INPUT_USERID";
         };
 
         input_email_proton: input_email_proton {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp R &kp N1 &kp C &kp LS(A) &kp N1 &kp N8 &kp AT &kp P &kp R &kp O &kp T &kp O &kp N &kp DOT &kp M &kp E>;
-            label = "INPUT_EMAIL_PROTON";
         };
 
         // BT connection + base layer switch macro
@@ -165,7 +163,6 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&bt BT_SEL 0 &to MAIN>;
-            label = "BT_MAC";
         };
 
         // Language switch + return to main layer macros
@@ -174,14 +171,12 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LANG2 &to MAIN>;
-            label = "LANG2";
         };
 
         lang1: lang1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LANG1 &to MAIN>;
-            label = "LANG1";
         };
     };
 };
