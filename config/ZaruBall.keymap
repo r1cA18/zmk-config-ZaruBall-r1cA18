@@ -21,7 +21,6 @@
 #define MOUSE    3  // Mouse
 #define SCROLL   4  // Scroll
 #define CONTROL  5  // BT/System
-#define GAME     6  // Game
 
 // trackball_listener settings
 
@@ -47,20 +46,6 @@
 
 / {
     behaviors {
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt LALT LANG2>, <&mo RAISE>, <&none>;
-        };
-
-        td1: tap_dance_1 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt RCTL LANG1>, <&mo RAISE>, <&none>;
-        };
-
         // Homerow mods (prevent misfires during fast typing)
         // - balanced: good balance between tap and hold
         // - require-prior-idle-ms: won't trigger modifier while typing
@@ -89,6 +74,16 @@
             bindings = <&kp>, <&kp>;
 
             display-name = "SandS";
+        };
+
+        ArcTabS: ArcTabS {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            bindings = <&kp RIGHT_SHIFT>, <&kp LC(TAB)>;
+
+            display-name = "ArcTabS";
         };
 
         // Mouse layer: hold for modifier, tap for language switch + return to main
@@ -183,15 +178,6 @@
             label = "BT_MAC";
         };
 
-        // Game mode switch macro
-
-        to_game: to_game {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&to GAME>;
-            label = "TO_GAME";
-        };
-
         // Language switch + return to main layer macros
 
         lang2: lang2 {
@@ -218,13 +204,13 @@
 
         main_layer {
             display-name = "Main";
-            sensor-bindings = <&inc_dec_kp LG(KP_PLUS) LG(KP_MINUS)>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             bindings = <
-&kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none            &none  &none      &none    &none                            &none
-&kp LC(T)             &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y            &kp U  &kp I      &kp O    &kp P                            &mo CONTROL
-&kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS RIGHT_SHIFT TAB  &kp H            &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
-&HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N            &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2     &kp C_MUTE         &to MOUSE        &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                        &kp BSPC                &lt RAISE ENTER                                                              &SandS RA(RIGHT_GUI) LANG1
+&kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                              &none        &none  &none      &none    &none                            &none
+&kp LC(T)             &kp Q       &kp W  &kp E            &kp R                  &kp T                                         &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                            &kp Y        &kp U  &kp I      &kp O    &kp P                            &mo CONTROL
+&kp ESC               &kp A       &kp S  &HRM LEFT_ALT D  &HRM LS(LEFT_GUI) F    &HRM LEFT_CONTROL G  &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &ArcTabS                &kp H        &kp J  &kp K      &kp L    &HRM RS(RA(RC(RIGHT_GUI))) SEMI  &kp MINUS
+&HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp B                &kp DOWN                 &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                  &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH                         &HRM RIGHT_SHIFT RIGHT
+&SandS LGUI LANG2     &kp C_MUTE         &to MOUSE        &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                       &kp BSPC                &lt RAISE ENTER                                                          &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
@@ -291,23 +277,9 @@
             bindings = <
 &trans       &trans         &trans        &trans        &trans        &trans                          &trans  &trans  &trans  &trans            &trans         &trans               &trans  &trans  &trans  &trans
 &kp C_SLEEP  &kp LG(MINUS)  &kp LG(PLUS)  &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP                    &trans  &trans  &trans  &trans            &trans         &trans               &trans  &trans  &trans  &trans
-&trans       &bt_mac        &bt BT_SEL 1  &bt BT_SEL 2  &to_game      &bt BT_SEL 4  &bt BT_CLR        &trans  &trans  &trans  &trans    &trans  &trans         &trans               &trans  &trans  &trans  &trans
+&trans       &bt_mac        &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR        &trans  &trans  &trans  &trans    &trans  &trans         &trans               &trans  &trans  &trans  &trans
 &trans       &trans         &out OUT_USB  &out OUT_TOG  &out OUT_BLE  &trans        &bt BT_CLR_ALL    &trans  &trans  &trans  &trans    &trans  &input_userid  &input_email_proton  &trans  &trans  &trans  &trans
 &trans       &trans                       &trans        &trans        &trans        &trans                                              &trans  &trans                                                      &trans
-            >;
-        };
-
-        // ========== Game Layer ==========
-
-        game_layer {
-            display-name = "Game";
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-            bindings = <
-&none             &none       &none  &none  &none     &none                               &kp KP_N7     &kp KP_N8  &kp KP_N9   &kp KP_DIVIDE                             &none      &none  &none      &none    &none     &to 0
-&kp TAB           &kp Q       &kp W  &kp E  &kp R     &kp T                               &kp KP_N4     &kp KP_N5  &kp KP_N6   &kp KP_MULTIPLY                           &kp Y      &kp U  &kp I      &kp O    &kp P     &kp RBKT
-&kp ESC           &kp A       &kp S  &kp D  &kp F     &kp G      &SandS LEFT_SHIFT TAB    &kp KP_N1     &kp KP_N2  &kp KP_N3   &kp KP_MINUS       &SandS LEFT_SHIFT TAB  &kp H      &kp J  &kp K      &kp L    &kp SEMI  &kp MINUS
-&kp LEFT_SHIFT    &kp Z       &kp X  &kp C  &kp V     &kp B      &kp DOWN_ARROW           &kp KP_ENTER  &kp KP_N0  &kp KP_DOT  &kp KP_PLUS        &kp UP                 &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT_SHIFT
-&kp LEFT_CONTROL  &kp C_MUTE         &mo 3  &mkp MB4  &kp SPACE  &mo LOWER                                                                        &kp BSPC               &kp ENTER                                       &kp LANG1
             >;
         };
 

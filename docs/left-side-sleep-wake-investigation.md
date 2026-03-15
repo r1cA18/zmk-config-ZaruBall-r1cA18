@@ -25,17 +25,17 @@
 | ピン競合（エンコーダ/kscan） | 25% | エンコーダ無効化テスト中 |
 | BLE再接続失敗 | 15% | 未検証 |
 
-## 現在のテスト設定
+## 現在の実運用設定
 
 ### config/ZaruBall.conf
 ```kconfig
-CONFIG_ZMK_SLEEP=y
-CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=3600000  # 1時間
+CONFIG_ZMK_IDLE_TIMEOUT=30000
+CONFIG_ZMK_SLEEP=n
 ```
 
 ### boards/shields/ZaruBall/ZaruBall_left.overlay
 ```dts
-// SPI/trackball無効化（左側では不要）
+// 左手側は trackball を使わない
 &spi0 {
     status = "disabled";
 };
@@ -44,9 +44,9 @@ CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=3600000  # 1時間
     status = "disabled";
 };
 
-// エンコーダ無効化（ピン競合確認）
+// ダイヤルは再度有効化
 &left_encoder {
-    status = "disabled";
+    status = "okay";
 };
 ```
 
@@ -56,18 +56,13 @@ CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=3600000  # 1時間
 
 1. **Step 1**: スリープ無効化 → 問題解消（スリープ復帰経路が原因と確定）
 2. **Step 3**: interrupt-gpios極性変更 → 左側が完全に動作しなくなった → 元に戻した
-3. **現在**: スリープ1時間 + SPI/エンコーダ無効化でテスト中
+3. **その後**: 普段使い優先で `CONFIG_ZMK_SLEEP=n` に戻し、左側 trackball のみ無効化
 
 ## 次のステップ
 
-1. 1時間スリープ設定でテスト
-   - 問題再発しない → SPI/エンコーダ無効化が有効
-   - 問題再発する → 他の原因を調査
-
-2. 問題再発しない場合の追加検証
-   - エンコーダだけ有効に戻してテスト
-   - SPI/trackballだけ有効に戻してテスト
-   - どちらが原因か特定
+1. sleep を再度有効化したい場合は、現行 pinned 依存のまま別ブランチで検証する
+2. 左手側の不安定さが再発したら、まず encoder を切って再比較する
+3. それでも再発するなら、電源回路か split BLE 周りを疑う
 
 ## 参考: 関連ファイル
 
@@ -75,7 +70,7 @@ CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=3600000  # 1時間
 - `boards/shields/ZaruBall/ZaruBall_left.overlay` - 左側固有設定
 - `boards/shields/ZaruBall/ZaruBall.dtsi` - 共通デバイスツリー
 
-## 関連コミット
+## 備考
 
-- `715072a` fix: remove BLE params causing left side sleep wake failure
-- このブランチ: `debug/left-side-sleep-wake`
+- このメモは「sleep 復帰問題」の切り分け記録であって、現行設定の完全な仕様書ではない
+- 現行の依存 pin は `docs/dependency-pinning.md` を参照

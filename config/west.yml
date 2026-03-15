@@ -11,16 +11,19 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      # Pin upstream ZMK to a released version to avoid silent breakage.
+      revision: v0.3.0
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: badjeff
-      revision: main
+      # No upstream tags; pin to a known commit instead of following main.
+      revision: a1a0f35ab6750c8fc72b84ea00add1e5fbaea1e4
     - name: zmk-naginata
       remote: ImSota
-      revision: main
+      # No upstream tags; pin to a known commit instead of following main.
+      revision: 2544a5ad9df7eb7af1f0ae6382b8d29625a09576
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: main
+      revision: v0.3.0
   self:
     path: config
