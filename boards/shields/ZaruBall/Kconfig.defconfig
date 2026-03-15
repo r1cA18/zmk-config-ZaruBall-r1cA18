@@ -21,11 +21,23 @@ if SHIELD_ZARUBALL_RIGHT
 
 # Other settings
 
+config INPUT
+    default y
+
 config ZMK_POINTING
     default y
 
 # Assuming pointing device uses SPI
 config SPI
+    default y
+
+config PMW3610_ALT
+    default y
+
+config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
+    default y
+
+config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_PROXY
     default y
 
 endif
