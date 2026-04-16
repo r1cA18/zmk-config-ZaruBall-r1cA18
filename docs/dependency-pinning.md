@@ -14,10 +14,9 @@ To keep the firmware reproducible, this repo pins:
 
 ## Current pinned revisions
 
-As of 2026-03-16:
+As of 2026-04-16:
 
 - `zmk`: `ac7f75b8591d39aaf3b66b9d26f26c9ed921a009`
-- `zmk-pmw3610-driver`: `a1a0f35ab6750c8fc72b84ea00add1e5fbaea1e4`
 - `zmk-naginata`: `2544a5ad9df7eb7af1f0ae6382b8d29625a09576`
 - `zmk-rgbled-widget`: `a3510c9de46de8b42c803286f4978466c6ea3916`
 - GitHub Actions workflow: `zmkfirmware/zmk/.github/workflows/build-user-config.yml@ac7f75b8591d39aaf3b66b9d26f26c9ed921a009`

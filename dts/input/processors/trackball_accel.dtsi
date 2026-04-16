@@ -1,0 +1,23 @@
+/*
+ * Copyright (c) 2026
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+    /omit-if-no-ref/ zb_trackball_xy_accel: zb_trackball_xy_accel {
+        compatible = "zmk,input-processor-trackball-accel";
+        #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_X INPUT_REL_Y>;
+        base-scale = <1000>;
+        max-scale = <2200>;
+        acceleration-threshold = <150>;
+        acceleration-cap = <1400>;
+        reset-ms = <40>;
+        smoothing-percent = <35>;
+        track-remainders;
+    };
+};

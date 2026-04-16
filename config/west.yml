@@ -2,8 +2,6 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: badjeff
-      url-base: https://github.com/badjeff
     - name: ImSota
       url-base: https://github.com/ImSota
     - name: caksoylar
@@ -14,10 +12,6 @@ manifest:
       # Pin to a known-good ZMK commit that previously built this shield.
       revision: ac7f75b8591d39aaf3b66b9d26f26c9ed921a009
       import: app/west.yml
-    - name: zmk-pmw3610-driver
-      remote: badjeff
-      # No upstream tags; pin to a known commit instead of following main.
-      revision: a1a0f35ab6750c8fc72b84ea00add1e5fbaea1e4
     - name: zmk-naginata
       remote: ImSota
       # No upstream tags; pin to a known commit instead of following main.

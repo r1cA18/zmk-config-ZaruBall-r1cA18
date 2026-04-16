@@ -35,9 +35,6 @@ config ZMK_POINTING
 config SPI
     default y
 
-config PMW3610_ALT
-    default y
-
 config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
     default y
 
