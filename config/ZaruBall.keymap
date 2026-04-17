@@ -1,7 +1,6 @@
 #include <behaviors/rgbled_widget.dtsi>
 #include <dt-bindings/zmk/mouse.h>
 #include <input/processors.dtsi>
-#include <input/processors/trackball_accel.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
@@ -27,7 +26,6 @@
 
 &trackball_listener {
     input-processors = <
-        &zb_trackball_xy_accel
         &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_X_INVERT)
     >;
 

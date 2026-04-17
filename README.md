@@ -51,7 +51,6 @@ require-prior-idle-ms = 200  // 連続タイプ中は発動しない
 
 - **AML (Auto Mouse Layer)**: トラックボール操作で自動的にMouseレイヤーに移行（500ms維持）
 - **スクロールモード**: Layer 4 でトラックボールがスクロールホイールに変化
-- **動的加速度**: 低速時は細かく、高速時は大きく動く local input processor を適用
 - 軸変換設定でトラックボールの向きに対応
 
 ### その他の便利機能
@@ -77,7 +76,6 @@ require-prior-idle-ms = 200  // 連続タイプ中は発動しない
 
 - **センサー**: PMW3610 (SPI接続)
 - **CPI**: 600
-- **加速度**: local `zmk,input-processor-trackball-accel` で動的スケーリング
 - **ピン配置**:
   - SPI SCK: P1.15
   - SPI MOSI/MISO: P1.13

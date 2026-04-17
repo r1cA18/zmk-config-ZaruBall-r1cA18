@@ -1,4 +1,2 @@
 zephyr_library()
-zephyr_library_include_directories(${APPLICATION_SOURCE_DIR}/include)
 zephyr_library_sources(src/module_anchor.c)
-zephyr_library_sources_ifdef(CONFIG_ZMK_TRACKBALL_ACCEL_PROCESSOR src/input_processor_trackball_accel.c)

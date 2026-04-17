@@ -1,5 +1,5 @@
 /*
- * Keep the local Zephyr module present even on non-pointing builds.
+ * Keep the local Zephyr module discoverable for shield builds.
  *
  * SPDX-License-Identifier: MIT
  */
