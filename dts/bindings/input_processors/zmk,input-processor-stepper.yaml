@@ -18,3 +18,7 @@ properties:
     type: int
     default: 1
     description: Absolute value to emit for any non-zero matching event.
+  step-threshold:
+    type: int
+    default: 4
+    description: Accumulated input magnitude required before emitting one step.

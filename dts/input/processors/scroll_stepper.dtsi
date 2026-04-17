@@ -13,5 +13,6 @@
         type = <INPUT_EV_REL>;
         codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
         step-value = <1>;
+        step-threshold = <4>;
     };
 };
