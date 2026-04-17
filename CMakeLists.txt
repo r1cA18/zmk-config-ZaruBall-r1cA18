@@ -1,2 +1,4 @@
 zephyr_library()
+zephyr_library_include_directories(${APPLICATION_SOURCE_DIR}/include)
 zephyr_library_sources(src/module_anchor.c)
+zephyr_library_sources_ifdef(CONFIG_ZMK_SCROLL_STEPPER_PROCESSOR src/input_processor_scroll_stepper.c)

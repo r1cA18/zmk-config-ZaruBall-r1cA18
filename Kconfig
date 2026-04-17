@@ -1,0 +1,11 @@
+menu "ZaruBall Local Features"
+
+config ZMK_SCROLL_STEPPER_PROCESSOR
+    bool "Enable ZaruBall scroll stepper input processor"
+    default y
+    depends on ZMK_POINTING
+    help
+      Converts scroll events into fixed one-step wheel ticks so scroll speed
+      depends on traveled distance rather than large per-event deltas.
+
+endmenu

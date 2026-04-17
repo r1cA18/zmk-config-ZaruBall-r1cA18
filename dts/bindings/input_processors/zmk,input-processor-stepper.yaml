@@ -1,0 +1,20 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+description: Input Processor for converting relative input values into fixed steps
+
+compatible: "zmk,input-processor-stepper"
+
+include: ip_zero_param.yaml
+
+properties:
+  type:
+    type: int
+    required: true
+  codes:
+    type: array
+    required: true
+  step-value:
+    type: int
+    default: 1
+    description: Absolute value to emit for any non-zero matching event.

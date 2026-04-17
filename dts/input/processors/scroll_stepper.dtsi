@@ -1,0 +1,17 @@
+/*
+ * Copyright (c) 2026
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+    /omit-if-no-ref/ zb_scroll_stepper: zb_scroll_stepper {
+        compatible = "zmk,input-processor-stepper";
+        #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+        step-value = <1>;
+    };
+};
