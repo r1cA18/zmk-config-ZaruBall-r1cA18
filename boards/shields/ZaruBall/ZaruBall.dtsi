@@ -154,6 +154,10 @@
     };
 };
 
+&uicr {
+    nfct-pins-as-gpios;
+};
+
 // encoder
 / {
     left_encoder: encoder_left {
