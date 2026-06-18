@@ -242,7 +242,7 @@
             bindings = <
 &trans  &trans  &trans    &trans    &trans    &trans            &trans  &trans  &trans  &trans            &trans        &trans        &trans      &trans         &trans  &trans
 &trans  &trans  &trans    &trans    &trans    &trans            &trans  &trans  &trans  &trans            &kp LC(LEFT)  &kp LC(DOWN)  &kp LC(UP)  &kp LC(RIGHT)  &trans  &trans
-&trans  &trans  &mm_rclk  &mm_mclk  &mm_lclk  &trans  &trans    &trans  &trans  &trans  &trans    &trans  &trans        &mkp LCLK     &mkp MCLK   &mkp RCLK      &mo 4   &trans
+&trans  &trans  &mm_rclk  &mm_mclk  &mm_lclk  &trans  &trans    &trans  &trans  &trans  &trans    &to 0   &trans        &mkp LCLK     &mkp MCLK   &mkp RCLK      &mo 4   &trans
 &trans  &trans  &trans    &mm_mb5   &mm_mb4   &trans  &trans    &trans  &trans  &trans  &trans    &trans  &trans        &mkp MB4      &mkp MB5    &trans         &trans  &trans
 &trans  &trans            &trans    &trans    &trans  &trans                                      &trans  &trans                                                         &trans
             >;
