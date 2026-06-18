@@ -197,11 +197,11 @@
             display-name = "Main";
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             bindings = <
-&kp LG(GRAVE)         &none       &none  &none            &none                  &none                                         &none         &none      &none       &none                              &none        &none  &none      &none    &none                            &none
-&kp LC(T)             &kp Q       &kp L  &kp U            &kp COMMA              &kp DOT                                         &none         &none      &none       &none                            &kp F        &kp W  &kp R      &kp Y    &kp P                            &mo CONTROL
-&kp ESC               &kp E       &kp I  &HRM LEFT_ALT A  &HRM LS(LEFT_GUI) O    &HRM LEFT_CONTROL MINUS  &SandS LEFT_SHIFT TAB    &none         &none      &none       &none       &mt RIGHT_SHIFT LC(TAB) &kp K        &kp T  &kp N      &kp S    &HRM RS(RA(RC(RIGHT_GUI))) H  &kp MINUS
-&HRM LEFT_SHIFT LEFT  &kp Z       &kp X  &kp C            &kp V                  &kp SEMI             &kp DOWN                 &none         &none      &none       &none        &kp UP                  &kp G        &kp D  &kp M      &kp J    &kp B                         &HRM RIGHT_SHIFT RIGHT
-&SandS LGUI LANG2     &none              &to MOUSE        &SandS LEFT_SHIFT TAB  &lt RAISE SPACE      &mo LOWER                                                                       &kp BSPC                &lt RAISE ENTER                                                          &SandS RA(RIGHT_GUI) LANG1
+&kp LG(GRAVE)         &none  &none  &none            &none                  &none                                         &none  &none  &none  &none                             &none  &none  &none  &none  &none                            &none
+&kp LC(T)             &kp Q  &kp L  &kp U            &kp COMMA              &kp DOT                                       &none  &none  &none  &none                             &kp F  &kp W  &kp R  &kp Y  &kp P                            &mo CONTROL
+&kp ESC               &kp E  &kp I  &HRM LEFT_ALT A  &HRM LS(LEFT_GUI) O    &HRM LEFT_CONTROL MINUS  &SandS LEFT_SHIFT TAB    &none  &none  &none  &none    &mt RIGHT_SHIFT LC(TAB)  &kp K  &kp T  &kp N  &kp S  &HRM RS(RA(RC(RIGHT_GUI))) H  &kp MINUS
+&HRM LEFT_SHIFT LEFT  &kp Z  &kp X  &kp C            &kp V                  &kp SEMI                 &kp DOWN                 &none  &none  &none  &none    &kp UP                   &kp G  &kp D  &kp M  &kp J  &kp B                         &HRM RIGHT_SHIFT RIGHT
+&SandS LGUI LANG2     &none         &to MOUSE        &SandS LEFT_SHIFT TAB  &lt RAISE SPACE          &mo LOWER                                              &kp BSPC                 &lt RAISE ENTER                                                          &SandS RA(RIGHT_GUI) LANG1
             >;
         };
 
@@ -240,11 +240,11 @@
             display-name = "Mouse";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             bindings = <
-&trans         &trans  &trans    &trans    &trans    &trans                &none         &none      &none       &none              &trans          &trans          &trans        &trans           &trans  &trans
-&trans         &trans  &trans    &trans    &trans    &trans                &none         &none      &none       &none            &trans          &trans          &trans        &trans           &trans  &trans
-&trans         &trans  &mm_rclk  &mm_mclk  &mm_lclk  &trans  &trans        &none         &none      &none       &none       &trans  &mkp LCLK       &mkp MCLK       &mkp RCLK     &trans  &trans  &trans
-&trans         &trans  &trans    &mm_mb5   &mm_mb4   &trans  &trans        &none         &none      &none       &none        &trans  &trans          &mkp MB4        &mkp MB5      &trans           &trans  &trans
-&ht_l2 LGUI 0  &trans            &trans    &trans    &trans  &mo SCROLL                                                            &trans  &trans                                                                 &ht_l1 RA(RIGHT_GUI) 0
+&trans         &trans  &trans    &trans    &trans    &trans                &none  &none  &none  &none            &trans  &trans     &trans     &trans     &trans  &trans
+&trans         &trans  &trans    &trans    &trans    &trans                &none  &none  &none  &none            &trans  &trans     &trans     &trans     &trans  &trans
+&trans         &trans  &mm_rclk  &mm_mclk  &mm_lclk  &trans  &trans        &none  &none  &none  &none    &trans  &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans  &trans
+&trans         &trans  &trans    &mm_mb5   &mm_mb4   &trans  &trans        &none  &none  &none  &none    &trans  &trans  &mkp MB4   &mkp MB5   &trans     &trans  &trans
+&ht_l2 LGUI 0  &trans            &trans    &trans    &trans  &mo SCROLL                                  &trans  &trans                                           &ht_l1 RA(RIGHT_GUI) 0
             >;
         };
 
